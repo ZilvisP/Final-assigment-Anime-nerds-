@@ -12,7 +12,7 @@ class CreateUserMangaTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('manga_id');
             $table->unsignedBigInteger('status_id');
-            $table->unsignedDecimal('rating')->nullable();
+            $table->unsignedDecimal('rating', 2, 1)->nullable();
             $table->date('date_rated')->nullable();
             $table->timestamps();
 

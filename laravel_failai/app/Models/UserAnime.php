@@ -5,6 +5,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class UserAnime extends Model
 {
@@ -20,17 +21,17 @@ class UserAnime extends Model
         'date_voted',
     ];
 
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function anime()
+    public function anime(): BelongsTo
     {
         return $this->belongsTo(Anime::class);
     }
 
-    public function status()
+    public function status(): BelongsTo
     {
         return $this->belongsTo(UserStatus::class);
     }

@@ -3,6 +3,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 class UserManga extends Model
 {
     use HasFactory;
@@ -17,18 +19,18 @@ class UserManga extends Model
         'date_rated',
     ];
 
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function manga()
+    public function manga(): BelongsTo
     {
         return $this->belongsTo(Manga::class);
     }
 
-    public function status()
+    public function status(): BelongsTo
     {
-        return $this->belongsTo(GlobalStatus::class);
+        return $this->belongsTo(UserStatus::class);
     }
 }

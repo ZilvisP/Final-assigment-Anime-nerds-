@@ -5,6 +5,8 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -52,4 +54,24 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function status(): BelongsTo
+    {
+        return $this->belongsTo(UserStatus::class);
+    }
+
+    public function anime(): HasMany
+    {
+        return $this->hasMany(UserAnime::class);
+    }
+
+    public function manga(): HasMany
+    {
+        return $this->hasMany(UserManga::class);
+    }
+    public function __toString(): string
+    {
+        return $this->name;
+    }
 }
+

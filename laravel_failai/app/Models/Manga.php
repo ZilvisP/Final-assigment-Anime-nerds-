@@ -5,7 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 //use Intervention\Image\Facades\Image;
-
+/**
+ * @property string $title
+ */
 class Manga extends Model
 {
     use HasFactory;
@@ -20,9 +22,23 @@ class Manga extends Model
         'status_id',
     ];
 
-    public function status()
+    public function userManga()
+    {
+        return $this->hasMany(UserManga::class);
+    }
+
+    public function globalStatus()
     {
         return $this->belongsTo(GlobalStatus::class, 'status_id');
+    }
+
+    public function genres()
+    {
+        return $this->belongsToMany(Genre::class, 'anime_manga_genres', 'manga_id', 'genre_id');
+    }
+    public function __toString(): string
+    {
+        return $this->title;
     }
 
 //    public function setCoverImageAttribute($value)

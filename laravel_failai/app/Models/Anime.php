@@ -1,11 +1,18 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 //use Intervention\Image\Facades\Image;
 
+/**
+ * @property string $title
+ */
 class Anime extends Model
 {
     use HasFactory;
@@ -21,16 +28,28 @@ class Anime extends Model
         'thumbnail_image',
         'status_id',
     ];
+    private mixed $title;
 
-    public function status()
-    {
-        return $this->belongsTo(GlobalStatus::class);
-    }
-
-    public function userStatuses()
+    public function userAnime(): HasMany
     {
         return $this->hasMany(UserAnime::class);
     }
+
+    public function globalStatus(): BelongsTo
+    {
+        return $this->belongsTo(GlobalStatus::class, 'status_id');
+    }
+
+    public function genres(): BelongsToMany
+    {
+        return $this->belongsToMany(Genre::class, 'anime_manga_genres', 'anime_id', 'genre_id');
+    }
+
+    public function __toString(): string
+    {
+        return $this->title;
+    }
+}
 //    public function setCoverImageAttribute($value)
 //    {
 //        $this->attributes['cover_image'] = $value;
@@ -54,4 +73,4 @@ class Anime extends Model
 //
 //        $this->thumbnail_image = 'thumbnail/' . $value;
 //    }
-}
+

@@ -12,7 +12,7 @@ class CreateAnimeTable extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
-            $table->float('rating', 3, 1)->nullable();
+            $table->float('rating', 2, 1)->nullable();
             $table->date('release_date')->nullable();
             $table->string('cover_image')->nullable();
             $table->string('thumbnail_image')->nullable();
