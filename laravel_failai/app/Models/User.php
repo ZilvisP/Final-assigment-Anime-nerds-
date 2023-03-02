@@ -16,7 +16,7 @@ use Laravel\Sanctum\HasApiTokens;
  * @property string $email
  * @property Carbon $email_verified_at
  * @property string $password
-// * @property string $role
+ * @property string $role
  * @property string $remember_token
  * @property Carbon $created_at
  * @property Carbon $updated_at
@@ -24,6 +24,20 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
+
+    public const ROLE_ADMIN = 'sensei';
+    public const ROLE_MANAGER = 'senpai';
+    public const ROLE_USER = 'kohai';
+
+
+    public const ROLES = [
+        self::ROLE_ADMIN,
+        self::ROLE_USER,
+        self::ROLE_MANAGER,
+    ];
+
+
+    public const ROLE_DEFAULT = self::ROLE_USER;
 
     /**
      * The attributes that are mass assignable.
@@ -34,6 +48,13 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
+        'avatar_image',
+    ];
+    protected $guarded = [
+        'id',
+        'role',
+        'created_at',
+        'updated_at',
     ];
 
     /**
@@ -68,6 +89,20 @@ class User extends Authenticatable implements MustVerifyEmail
     public function manga(): HasMany
     {
         return $this->hasMany(UserManga::class);
+    }
+    public function isAdmin(): bool
+    {
+        return $this->role === self::ROLE_ADMIN;
+    }
+
+    public function isManager(): bool
+    {
+        return $this->role === self::ROLE_MANAGER;
+    }
+
+    public function Dojo(): bool
+    {
+        return in_array($this->role, [self::ROLE_ADMIN, self::ROLE_MANAGER]);
     }
     public function __toString(): string
     {

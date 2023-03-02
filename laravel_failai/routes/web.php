@@ -30,6 +30,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 require __DIR__.'/auth.php';
 
+
+
 ////'as' neveikiantis budas priskirti pavadinima
 ////Route::get('/products', [ProductsController::class, 'index', 'as' => 'products.index']);
 //

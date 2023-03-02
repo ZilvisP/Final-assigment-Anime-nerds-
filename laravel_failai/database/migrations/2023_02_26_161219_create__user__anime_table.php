@@ -14,7 +14,7 @@ class CreateUserAnimeTable extends Migration
             $table->unsignedBigInteger('anime_id');
             $table->unsignedBigInteger('status_id');
             $table->unsignedDecimal('rating', 2, 1)->nullable();
-            $table->date('date_voted')->nullable();
+            $table->date('date_rated')->nullable();
             $table->timestamps();
             $table->unique(['user_id', 'anime_id']);
         });

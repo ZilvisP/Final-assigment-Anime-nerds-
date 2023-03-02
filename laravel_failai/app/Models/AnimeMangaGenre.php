@@ -10,7 +10,13 @@ class AnimeMangaGenre extends Model
 {
     use HasFactory;
 
-    protected $table = 'anime_manga_category';
+    protected $table = 'anime_manga_genres';
+
+    protected $fillable = [
+        'anime_id',
+        'manga_id',
+        'genre_id',
+    ];
 
     public function anime(): BelongsTo
     {

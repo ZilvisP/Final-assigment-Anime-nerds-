@@ -13,24 +13,24 @@ class UserAnimeSeeder extends Seeder
             'user_id' => 1,
             'anime_id' => 1,
             'status_id' => 1,
-            'rating' => 9.0,
-            'date_voted' => '2022-02-01',
+            'rating' => 5,
+            'date_rated' => '2022-02-01',
         ]);
 
         UserAnime::create([
             'user_id' => 1,
             'anime_id' => 2,
             'status_id' => 1,
-            'rating' => 8.0,
-            'date_voted' => '2022-02-02',
+            'rating' => 5,
+            'date_rated' => '2022-02-02',
         ]);
 
         UserAnime::create([
             'user_id' => 3,
             'anime_id' => 2,
             'status_id' => 3,
-            'rating' => 7.5,
-            'date_voted' => '2022-02-03',
+            'rating' => 5,
+            'date_rated' => '2022-02-03',
         ]);
     }
 }
