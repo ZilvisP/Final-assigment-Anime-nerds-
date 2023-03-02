@@ -100,7 +100,7 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->role === self::ROLE_MANAGER;
     }
 
-    public function Dojo(): bool
+    public function fromDojo(): bool
     {
         return in_array($this->role, [self::ROLE_ADMIN, self::ROLE_MANAGER]);
     }

@@ -8,7 +8,9 @@
       <sourceFolder url="file://$MODULE_DIR$/laravel_failai/tests" isTestSource="true" packagePrefix="Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_failai/vendor/symfony/yaml" />
       <excludeFolder url="file://$MODULE_DIR$/laravel_failai/vendor/intervention/image" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_failai/vendor/guzzlehttp/uri-template" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
