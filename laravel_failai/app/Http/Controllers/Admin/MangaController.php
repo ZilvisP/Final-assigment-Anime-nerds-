@@ -12,14 +12,13 @@ class MangaController extends Controller
 {
     public function index()
     {
-        $mangas = Manga::all();
-
-        return view('manga.index', compact('mangas'));
+        $mangacollection = Manga::all();
+        return view('dojo.manga.index', ['mangacollection' => $mangacollection]);
     }
 
     public function create()
     {
-        return view('manga.create');
+        return view('dojo.manga.create');
     }
 
     public function store(MangaRequest $request)
@@ -31,12 +30,12 @@ class MangaController extends Controller
 
     public function show(Manga $manga)
     {
-        return view('manga.show', compact('manga'));
+        return view('dojo.manga.show', compact('manga'));
     }
 
     public function edit(Manga $manga)
     {
-        return view('manga.edit', compact('manga'));
+        return view('dojo.manga.edit', compact('manga'));
     }
 
     public function update(MangaRequest $request, Manga $manga)

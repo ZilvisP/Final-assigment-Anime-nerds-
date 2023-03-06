@@ -11,12 +11,12 @@ class UserAnimeController extends Controller
     public function index()
     {
         $useranimecollection = UserAnime::all();
-        return view('useranime.index', ['useranimecollection' => $useranimecollection]);
+        return view('dojo.useranime.index', ['useranimecollection' => $useranimecollection]);
     }
 
     public function create()
     {
-        return view('useranime.create');
+        return view('dojo.useranime.create');
     }
 
     public function store(UserAnimeRequest $request)
@@ -27,12 +27,12 @@ class UserAnimeController extends Controller
 
     public function show(UserAnime $useranime)
     {
-        return view('useranime.show', ['useranime' => $useranime]);
+        return view('dojo.useranime.show', ['useranime' => $useranime]);
     }
 
     public function edit(UserAnime $useranime)
     {
-        return view('useranime.edit', compact('useranime'));
+        return view('dojo.useranime.edit', compact('useranime'));
     }
 
     public function update(UserAnimeRequest $request, UserAnime $useranime)

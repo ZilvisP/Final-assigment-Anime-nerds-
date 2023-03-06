@@ -11,12 +11,12 @@ class UserMangaController extends Controller
     public function index()
     {
         $usermangacollection = UserManga::all();
-        return view('usermanga.index', ['usermangacollection' => $usermangacollection]);
+        return view('dojo.usermanga.index', ['usermangacollection' => $usermangacollection]);
     }
 
     public function create()
     {
-        return view('usermanga.create');
+        return view('dojo.usermanga.create');
     }
 
     public function store(UserMangaRequest $request)
@@ -27,12 +27,12 @@ class UserMangaController extends Controller
 
     public function show(UserManga $usermanga)
     {
-        return view('usermanga.show', ['usermanga' => $usermanga]);
+        return view('dojo.usermanga.show', ['usermanga' => $usermanga]);
     }
 
     public function edit(UserManga $usermanga)
     {
-        return view('usermanga.edit', compact('usermanga'));
+        return view('dojo.usermanga.edit', compact('usermanga'));
     }
 
     public function update(UserMangaRequest $request, UserManga $usermanga)

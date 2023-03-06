@@ -48,13 +48,15 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
-        'avatar_image',
+
     ];
     protected $guarded = [
         'id',
         'role',
         'created_at',
         'updated_at',
+        'status_id',
+          'avatar_image',
     ];
 
     /**

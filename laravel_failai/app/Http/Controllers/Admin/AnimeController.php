@@ -19,14 +19,15 @@ class AnimeController extends Controller
 
     public function index()
     {
-        $animeList = $this->animeManager->getAllAnime();
+//        $animeList = $this->animeManager->getAllAnime();
+        $animecollection = Anime::all();
 
-        return view('anime.index', compact('animeList'));
+        return view('dojo.anime.index', ['animecollection' => $animecollection]);
     }
 
     public function create()
     {
-        return view('anime.create');
+        return view('dojo.anime.create');
     }
 
     public function store(AnimeRequest $request)
@@ -38,12 +39,12 @@ class AnimeController extends Controller
 
     public function show(Anime $anime)
     {
-        return view('anime.show', compact('anime'));
+        return view('dojo.anime.show', compact('anime'));
     }
 
     public function edit(Anime $anime)
     {
-        return view('anime.edit', compact('anime'));
+        return view('dojo.anime.edit', compact('anime'));
     }
 
     public function update(AnimeRequest $request, Anime $anime)

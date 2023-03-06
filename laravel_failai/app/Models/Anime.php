@@ -45,6 +45,10 @@ class Anime extends Model
         return $this->belongsToMany(Genre::class, 'anime_manga_genres', 'anime_id', 'genre_id');
     }
 
+//    public function getAverageRating(): float
+//    {
+//        return $this->userAnime()->avg('rating');
+//    }
     public function __toString(): string
     {
         return $this->title;

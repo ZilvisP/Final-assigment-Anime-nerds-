@@ -25,7 +25,7 @@ class UserRequest extends FormRequest
         return [
             'name' => 'required|max:255',
             'email'    => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $this->user->id ],
-            'password' => 'required|min:8',
+            'password' => 'required|max:8',
             'avatar_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
     }

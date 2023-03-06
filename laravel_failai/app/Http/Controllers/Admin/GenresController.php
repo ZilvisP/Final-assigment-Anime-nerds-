@@ -11,12 +11,12 @@ class GenresController extends Controller
     public function index()
     {
         $genres = Genre::all();
-        return view('genres.index', ['genres' => $genres]);
+        return view('dojo.genres.index', ['genres' => $genres]);
     }
 
     public function create()
     {
-        return view('genres.create');
+        return view('dojo.genres.create');
     }
 
     public function store(GenreRequest $request)
@@ -27,12 +27,12 @@ class GenresController extends Controller
 
     public function show(Genre $genre)
     {
-        return view('genres.show', ['genre' => $genre]);
+        return view('dojo.genres.show', ['genre' => $genre]);
     }
 
     public function edit(Genre $genre)
     {
-        return view('genres.edit', compact('genre'));
+        return view('dojo.genres.edit', compact('genre'));
     }
 
     public function update(GenreRequest $request, Genre $genre)

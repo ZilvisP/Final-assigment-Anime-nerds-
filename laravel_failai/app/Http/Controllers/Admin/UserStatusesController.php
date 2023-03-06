@@ -11,12 +11,12 @@ class UserStatusesController extends Controller
     public function index()
     {
         $userstatuses = UserStatus::all();
-        return view('userstatuses.index', ['userstatuses' => $userstatuses]);
+        return view('dojo.userstatuses.index', ['userstatuses' => $userstatuses]);
     }
 
     public function create()
     {
-        return view('userstatuses.create');
+        return view('dojo.userstatuses.create');
     }
 
     public function store(UserStatusRequest $request)
@@ -27,12 +27,12 @@ class UserStatusesController extends Controller
 
     public function show(UserStatus $userstatus)
     {
-        return view('userstatuses.show', ['userstatus' => $userstatus]);
+        return view('dojo.userstatuses.show', ['userstatus' => $userstatus]);
     }
 
     public function edit(UserStatus $userstatus)
     {
-        return view('userstatuses.edit', compact('userstatus'));
+        return view('dojo.userstatuses.edit', compact('userstatus'));
     }
 
     public function update(UserStatusRequest $request, UserStatus $userstatus)

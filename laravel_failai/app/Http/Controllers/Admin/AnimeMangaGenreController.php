@@ -11,12 +11,12 @@ class AnimeMangaGenreController extends Controller
     public function index()
     {
         $animemangagenres = AnimeMangaGenre::all();
-        return view('$animemangagenres.index', ['animemangagenres' => $animemangagenres]);
+        return view('dojo.animemangagenres.index', ['animemangagenres' => $animemangagenres]);
     }
 
     public function create()
     {
-        return view('animemangagenres.create');
+        return view('dojo.animemangagenres.create');
     }
 
     public function store(AnimeMangaGenreRequest $request)
@@ -27,12 +27,12 @@ class AnimeMangaGenreController extends Controller
 
     public function show(AnimeMangaGenre $animeMangaGenre)
     {
-        return view('animemangagenres.show', ['animemangagenre' => $animeMangaGenre]);
+        return view('dojo.animemangagenres.show', ['animemangagenre' => $animeMangaGenre]);
     }
 
     public function edit(AnimeMangaGenre $animemangagenre)
     {
-        return view('animemangagenres.edit', compact('animemangagenre'));
+        return view('dojo.animemangagenres.edit', compact('animemangagenre'));
     }
 
     public function update(AnimeMangaGenreRequest $request, AnimeMangaGenre $animemangagenre)

@@ -1,8 +1,12 @@
-nav.navbar {
-    background-color: #333;
-    color: #fff;
-}
 
+nav.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #333;
+
+}
 nav.navbar ul {
     display: flex;
     justify-content: flex-end;
@@ -11,14 +15,13 @@ nav.navbar ul {
     padding: 0;
 }
 
-nav.navbar li {
-    margin-left: 10px;
-}
+/*nav.navbar li {*/
+/*    margin-left: 10px;*/
+/*}*/
 
 nav.navbar li a {
-    background-color: #fff;
-    border: 1px solid #ccc;
-    color: #333;
+
+    color: #c5bfbf;
     display: inline-block;
     padding: 5px 10px;
     text-decoration: none;
@@ -26,5 +29,17 @@ nav.navbar li a {
 }
 
 nav.navbar li a:hover {
-    background-color: #ccc;
+    background-color: #545454;
+}
+
+nav.navbar li form button {
+    height: 1.5rem;
+    padding: 7px 10px;
+    border: none;
+    color: #c5bfbf;
+    background-color: transparent;
+}
+
+nav.navbar li form button:hover {
+    background-color: #545454;
 }

@@ -11,12 +11,12 @@ class GlobalStatusesController extends Controller
     public function index()
     {
         $globalstatuses = GlobalStatus::all();
-        return view('globalstatuses.index', ['globalstatuses' => $globalstatuses]);
+        return view('dojo.globalstatuses.index', ['globalstatuses' => $globalstatuses]);
     }
 
     public function create()
     {
-        return view('globalstatuses.create');
+        return view('dojo.globalstatuses.create');
     }
 
     public function store(GlobalStatusRequest $request)
@@ -27,12 +27,12 @@ class GlobalStatusesController extends Controller
 
     public function show(GlobalStatus $globalstatus)
     {
-        return view('globalstatuses.show', ['globalstatus' => $globalstatus]);
+        return view('dojo.globalstatuses.show', ['globalstatus' => $globalstatus]);
     }
 
     public function edit(GlobalStatus $globalstatus)
     {
-        return view('globalstatuses.edit', compact('globalstatus'));
+        return view('dojo.globalstatuses.edit', compact('globalstatus'));
     }
 
     public function update(GlobalStatusRequest $request, GlobalStatus $globalstatus)

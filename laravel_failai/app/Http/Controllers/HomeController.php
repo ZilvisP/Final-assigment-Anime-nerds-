@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Anime;
-use App\Models\Manga;
+use App\Http\Controllers\Api\AnimeController;
+use App\Http\Controllers\Api\MangaController;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -19,7 +19,15 @@ class HomeController extends Controller
 
     public function __invoke(Request $request)
     {
-        return view('home');
+        $animeController = new AnimeController();
+        $popularAnime = $animeController->popular();
+        $newestAnime = $animeController->newest();
+
+        $mangaController = new MangaController();
+        $popularManga = $mangaController->popular();
+        $newestManga = $mangaController->newest();
+
+        return view('home', compact('popularAnime', 'newestAnime', 'popularManga', 'newestManga'));
+
     }
 }
-

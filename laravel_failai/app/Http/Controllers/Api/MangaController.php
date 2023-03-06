@@ -14,10 +14,17 @@ class MangaController extends Controller
      *
      * @return MangaCollection
      */
+
+//    public function index()
+//    {
+//        $mangacollection = Manga::all();
+//
+//        return new MangaCollection($mangacollection);
+//    }
     public function popular()
     {
-        $popularManga = Manga::withAvg('ratings', 'rating')
-            ->orderByDesc('ratings_avg_rating')
+        $popularManga = Manga::withAvg('userManga', 'rating')
+            ->orderByDesc('user_manga_avg_rating')
             ->take(6)
             ->get();
 
@@ -46,6 +53,8 @@ class MangaController extends Controller
      */
     public function show(Manga $manga)
     {
-        return new MangaResource($manga);
+        $manga->load(['genres', 'ratings']);
+        $averageRating = $manga->ratings()->avg('rating');
+        return new MangaResource($manga, $averageRating);
     }
 }

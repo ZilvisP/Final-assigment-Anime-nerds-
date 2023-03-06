@@ -13,11 +13,18 @@ class AnimeController extends Controller
      * Get popular anime with highest average rating.
      *
      * @return AnimeCollection
+     *
      */
+//    public function index()
+//    {
+//        $animecollection = Anime::all();
+//
+//        return new AnimeCollection($animecollection);
+//    }
     public function popular()
     {
-        $popularAnime = Anime::withAvg('ratings', 'rating')
-            ->orderByDesc('ratings_avg_rating')
+        $popularAnime = Anime::withAvg('userAnime', 'rating')
+            ->orderByDesc('user_anime_avg_rating')
             ->take(6)
             ->get();
 
@@ -46,6 +53,8 @@ class AnimeController extends Controller
      */
     public function show(Anime $anime)
     {
-        return new AnimeResource($anime);
+        $anime->load(['genres', 'ratings']);
+        $averageRating = $anime->ratings()->avg('rating');
+        return new AnimeResource($anime, $averageRating);
     }
 }
