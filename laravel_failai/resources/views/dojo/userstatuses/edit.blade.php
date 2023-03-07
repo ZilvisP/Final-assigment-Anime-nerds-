@@ -1,4 +1,4 @@
-@extends('layouts.dojo.main')
+@extends('guest')
 @section('content')
 
     <h2>Edit status users use</h2>

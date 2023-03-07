@@ -1,4 +1,4 @@
-@extends('layouts.dojo.main')
+@extends('guest')
 @section('content')
     <h2>Create global status</h2>
     <form action="{{route('globalstatuses.store')}}" method="post">

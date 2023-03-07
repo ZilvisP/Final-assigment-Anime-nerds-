@@ -1,4 +1,4 @@
-@extends('layouts.home.pagrindinis')
+@extends('layouts.dashboard')
 
 @section('content')
     <div class="container mx-auto py-8">

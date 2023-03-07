@@ -1,4 +1,4 @@
-@extends('layouts.dojo.main')
+@extends('guest')
 @section('content')
     <div class="row">
         <div class="col s12"></div>
@@ -27,7 +27,7 @@
                     <td>{{$manga->thumbnail_image}}</td>
                     <td>{{$manga->status_id}}</td>
                     <td>
-                        <x-forms.buttons.action :model="$manga" mainRoute="anime" />
+                        <x-forms.buttons.action :model="$manga" mainRoute="anime"/>
                     </td>
                 </tr>
             @endforeach

@@ -1,4 +1,4 @@
-@extends('layouts.dojo.main')
+@extends('guest')
 @section('content')
     <div class="row">
         <div class="col s12"></div>
@@ -19,7 +19,7 @@
                     <td>{{$globalstatus->name}}</td>
                     <td>{{$globalstatus->category}}</td>
                     <td>
-                        <x-forms.buttons.action :model="$globalstatus" mainRoute="globalstatuses" />
+                        <x-forms.buttons.action :model="$globalstatus" mainRoute="globalstatuses"/>
                     </td>
                 </tr>
             @endforeach

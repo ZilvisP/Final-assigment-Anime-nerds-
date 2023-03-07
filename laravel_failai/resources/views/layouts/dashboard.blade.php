@@ -13,7 +13,7 @@
 </head>
 <body>
 <header>
-    @include('layouts.home.header')
+    @include('layouts.header')
 </header>
 <main>
     <div class="sidebar">

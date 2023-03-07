@@ -1,4 +1,4 @@
-@extends('layouts.dojo.main')
+@extends('guest')
 @section('content')
     <h2>User manga</h2>
     <form action="{{route('usermanga.store')}}" method="post">

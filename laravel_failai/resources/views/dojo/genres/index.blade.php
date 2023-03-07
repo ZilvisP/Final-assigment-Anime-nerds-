@@ -1,4 +1,4 @@
-@extends('layouts.dojo.main')
+@extends('guest')
 @section('content')
     <div class="row">
         <div class="col s12"></div>
@@ -17,7 +17,7 @@
                     <td>{{$genre->id}}</td>
                     <td>{{$genre->name}}</td>
                     <td>
-                        <x-forms.buttons.action :model="$genre" mainRoute="genres" />
+                        <x-forms.buttons.action :model="$genre" mainRoute="genres"/>
                     </td>
                 </tr>
             @endforeach
