@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Anime and Manga Site</title>
+    <title>Anime and Manga</title>
     <link rel="stylesheet" href="/css/home.css"/>
     <script src="/js/home.js" defer></script>
     <script
@@ -12,9 +12,7 @@
         crossorigin="anonymous"></script>
 </head>
 <body>
-<header>
     @include('layouts.header')
-</header>
 <main>
     <div class="sidebar">
         @include('layouts.dojo.sidebar_navigation')
@@ -22,11 +20,7 @@
     <div class="main-content">
         @yield('content')
     </div>
-
 </main>
-<footer>
-
-</footer>
-
+        @include('layouts.footer')
 </body>
 </html>

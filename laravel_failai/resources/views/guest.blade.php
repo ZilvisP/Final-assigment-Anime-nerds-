@@ -20,13 +20,13 @@
         @endif
     </div>
     <div class="content-container">
-    <div class="logo-container">
-        <img src="{{ asset('assets/logo/grey.jpg') }}" width="200px" alt="logo">
-    </div>
-        <div class="main-content">
-            @yield('content', 'Default content')
+        <div class="logo-container">
+            <img src="{{ asset('assets/logo/grey.jpg') }}" width="200px" alt="logo">
+
+            <div class="main-content">
+                @yield('content', 'Default content')
+            </div>
         </div>
-    </div>
 </main>
 <footer>
     @include('layouts.footer')

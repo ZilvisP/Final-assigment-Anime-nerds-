@@ -1,11 +1,11 @@
-<header>
+
     <link rel="stylesheet" href="/css/navigation.top.css"/>
     <nav class="navbar">
         <div class="navbar-start">
             <ul>
                 <li><a href="/">Home</a></li>
-                <li><a href="{{route('anime.index')}}">{{ __('Anime') }}</a></li>
-                <li><a href="{{route('manga.index')}}">{{ __('Manga') }}</a></li>
+                <li><a href="{{route('PublicAnime.index')}}">{{ __('Anime') }}</a></li>
+                <li><a href="{{route('PublicManga.index')}}">{{ __('Manga') }}</a></li>
 
                 @if (!Auth::check())
                     <li><a href="{{ route('register') }}">Register</a></li>
@@ -22,4 +22,4 @@
             </ul>
         </div>
     </nav>
-</header>
+

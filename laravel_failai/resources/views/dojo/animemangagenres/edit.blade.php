@@ -1,4 +1,4 @@
-@extends('guest')
+@extends('dashboard')
 @section('content')
 
     <h2>Edit genres for anime/manga</h2>

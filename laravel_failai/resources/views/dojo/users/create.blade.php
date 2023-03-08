@@ -1,4 +1,4 @@
-@extends('guest')
+@extends('dashboard')
 @section('content')
     <h2>Creating user/h2>
         <form action="{{route('users.store')}}" method="post">

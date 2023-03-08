@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+
 //use Intervention\Image\Facades\Image;
 /**
  * @property string $title
@@ -32,9 +34,11 @@ class Manga extends Model
         return $this->belongsTo(GlobalStatus::class, 'status_id');
     }
 
-    public function genres()
+    public function genres(): hasManyThrough
     {
-        return $this->belongsToMany(Genre::class, 'anime_manga_genres', 'manga_id', 'genre_id');
+        return $this->hasManyThrough(Genre::class, AnimeMangaGenre::class,
+            'manga_id',
+            'id', 'id', 'genre_id');
     }
     public function getAverageRating(): float
     {

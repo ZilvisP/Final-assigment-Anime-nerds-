@@ -27,7 +27,7 @@ class HomeController extends Controller
         $popularManga = $mangaController->popular();
         $newestManga = $mangaController->newest();
 
-        return view('home', compact('popularAnime', 'newestAnime', 'popularManga', 'newestManga'));
+        return view('public.home', compact('popularAnime', 'newestAnime', 'popularManga', 'newestManga'));
 
     }
 }

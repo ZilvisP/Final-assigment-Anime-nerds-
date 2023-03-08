@@ -11,12 +11,20 @@ use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\UserStatusesController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PublicAnimeController;
+use App\Http\Controllers\PublicMangaController;
 use App\Http\Middleware\FromDojo;
 use Illuminate\Support\Facades\Route;
 
 
 
 Route::get('/', HomeController::class);
+
+
+Route::get('/anime', [PublicAnimeController::class, 'index'])->name('PublicAnime.index');
+Route::get('/manga', [PublicMangaController::class, 'index'])->name('PublicManga.index');
+Route::get('/anime/{anime}', [PublicAnimeController::class, 'show'])->name('PublicAnime.show');
+Route::get('/manga/{manga}', [PublicMangaController::class, 'show'])->name('PublicManga.show');
 
 //Route::get('/dashboard', function () {
 //    return view('dashboard');

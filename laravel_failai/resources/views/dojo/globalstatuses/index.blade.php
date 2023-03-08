@@ -1,8 +1,8 @@
-@extends('guest')
+@extends('dashboard')
 @section('content')
     <div class="row">
         <div class="col s12"></div>
-        <h1>Global statuses</h1>
+        <h2>Global statuses</h2>
         <a href="{{route('globalstatuses.create')}}" class="btn btn-primary">Add new</a>
         <table class="table">
             <thead>

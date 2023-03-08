@@ -1,4 +1,4 @@
-@extends('guest')
+@extends('dashboard')
 @section('content')
     <h2>User anime</h2>
     <form action="{{route('useranime.store')}}" method="post">

@@ -1,4 +1,4 @@
-@extends('guest')
+@extends('dashboard')
 @section('content')
     <h2>Adding genre to anime/manga</h2>
     <form action="{{route('animemangagenres.store')}}" method="post">

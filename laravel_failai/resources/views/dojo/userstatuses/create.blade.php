@@ -1,4 +1,4 @@
-@extends('guest')
+@extends('dashboard')
 @section('content')
     <h2>Creating status users use</h2>
     <form action="{{route('userstatuses.store')}}" method="post">

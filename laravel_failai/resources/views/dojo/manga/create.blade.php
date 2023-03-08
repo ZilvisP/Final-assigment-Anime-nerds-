@@ -1,4 +1,4 @@
-@extends('guest')
+@extends('dashboard')
 @section('content')
     <h2>Creating manga</h2>
     <form action="{{route('manga.store')}}" method="post">

@@ -1,7 +1,7 @@
-@extends('layouts.dashboard')
+@extends('dashboard')
 
 @section('content')
-    <div class="container mx-auto py-8">
+    <div class="container">
         <h2 class="text-4xl font-medium mb-8">Popular Anime</h2>
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
             @foreach ($popularAnime as $anime)

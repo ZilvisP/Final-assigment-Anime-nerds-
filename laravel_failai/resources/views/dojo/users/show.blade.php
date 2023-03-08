@@ -1,4 +1,4 @@
-@extends('guest')
+@extends('dashboard')
 @section('content')
 
     <div class="row">

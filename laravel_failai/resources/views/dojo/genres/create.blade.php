@@ -1,4 +1,4 @@
-@extends('guest')
+@extends('dashboard')
 @section('content')
     <h2>Creating genre</h2>
     <form action="{{route('genres.store')}}" method="post">

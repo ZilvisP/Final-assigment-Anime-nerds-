@@ -18,12 +18,16 @@ class Genre extends Model
 
     public function anime()
     {
-        return $this->belongsToMany(Anime::class, 'anime_manga_genres', 'genre_id', 'anime_id');
+        return $this->belongsToMany(Anime::class,
+            'anime_manga_genres',
+            'genre_id', 'anime_id');
     }
 
     public function manga()
     {
-        return $this->belongsToMany(Manga::class, 'anime_manga_genres', 'genre_id', 'manga_id');
+        return $this->belongsToMany(Manga::class,
+            'anime_manga_genres', 'genre_id',
+            'manga_id');
     }
 
     public function __toString(): string

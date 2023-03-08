@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 //use Intervention\Image\Facades\Image;
 
@@ -37,13 +38,18 @@ class Anime extends Model
 
     public function globalStatus(): BelongsTo
     {
-        return $this->belongsTo(GlobalStatus::class, 'status_id');
+        return $this->belongsTo(GlobalStatus::class,
+            'status_id');
     }
 
-    public function genres(): BelongsToMany
+    public function genres(): hasManyThrough
     {
-        return $this->belongsToMany(Genre::class, 'anime_manga_genres', 'anime_id', 'genre_id');
+        return $this->hasManyThrough(Genre::class, AnimeMangaGenre::class,
+            'anime_id',
+            'id', 'id', 'genre_id');
     }
+
+
 
 //    public function getAverageRating(): float
 //    {

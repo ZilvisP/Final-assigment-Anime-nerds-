@@ -1,8 +1,8 @@
-@extends('guest')
+@extends('dashboard')
 @section('content')
     <div class="row">
         <div class="col s12"></div>
-        <h1>Manga</h1>
+        <h2>Manga</h2>
         <a href="{{route('manga.create')}}" class="btn btn-primary">Add new</a>
         <table class="table">
             <thead>

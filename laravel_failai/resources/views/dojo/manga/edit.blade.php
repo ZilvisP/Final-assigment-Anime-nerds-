@@ -1,4 +1,4 @@
-@extends('guest')
+@extends('dashboard')
 @section('content')
 
     <h2>Edit manga</h2>
