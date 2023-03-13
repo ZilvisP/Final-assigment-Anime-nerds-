@@ -7,7 +7,7 @@
                 @foreach($animecollection as $anime)
                     <div class="grid-item">
                         <div class="anime-thumbnail">
-                            {{--                        <img src="{{$anime->thumbnail_image}}" alt="{{$product->title}}">--}}
+                            {{--                        <img src="{{$anime->thumbnail_image}}" alt="{{$anime->title}}">--}}
                         </div>
                         <p>{{$anime->title}}</p>
 {{--                        <p>Genres {{ $anime->genres}}</p>--}}
@@ -16,6 +16,15 @@
                                 {{ $genre->name}}
                             @endforeach
                         </p>
+
+
+                        <x-forms.progressStatus field="status_id" :model="$UserAnime"
+                                                :options="\App\Models\UserStatus::all()" />
+
+
+
+
+
                         {{--               TODO select status dropbox "watched want to watch etc.. TABLE user_anime   clmn status_id   <p></p>--}}
                         {{--                    <x-forms.buttons.action :model="$manga" mainRoute="manga"/>--}}
 
@@ -31,6 +40,3 @@
     </div>
 
 @endsection
-{{--                    @foreach($anime->genres as $genre)--}}
-{{--                        {{$genre->name}},--}}
-{{--                    @endforeach--}}

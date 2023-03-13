@@ -7,6 +7,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -78,20 +79,40 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    public function status(): BelongsTo
+//    public function status(): BelongsTo
+//    {
+//        return $this->belongsTo(UserStatus::class);
+//    }
+    public function status(): hasManyThrough
     {
-        return $this->belongsTo(UserStatus::class);
+        return $this->hasManyThrough(UserStatus::class, UserAnime::class,
+            'user_id','id', 'id', 'anime_id');
     }
 
-    public function anime(): HasMany
+
+//    public function anime(): HasMany
+//    {
+//        return $this->hasMany(UserAnime::class);
+//    }
+
+    public function anime(): hasManyThrough
     {
-        return $this->hasMany(UserAnime::class);
+        return $this->hasManyThrough(Anime::class, UserAnime::class,
+            'user_id','id', 'id', 'anime_id');
     }
 
-    public function manga(): HasMany
+
+//    public function manga(): HasMany
+//    {
+//        return $this->hasMany(UserManga::class);
+//    }
+    public function manga(): hasManyThrough
     {
-        return $this->hasMany(UserManga::class);
+        return $this->hasManyThrough(Manga::class, UserManga::class,
+            'user_id','id', 'id', 'manga_id');
     }
+
+
     public function isAdmin(): bool
     {
         return $this->role === self::ROLE_ADMIN;

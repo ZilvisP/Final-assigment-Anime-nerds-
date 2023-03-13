@@ -37,9 +37,13 @@ footer {
     color: #c5bfbf;
 }
 
- {
-}
 footer .footer-content{
     background-color: #333;
     color: #c5bfbf;
+}
+.logo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    margin-bottom: 100px;
 }

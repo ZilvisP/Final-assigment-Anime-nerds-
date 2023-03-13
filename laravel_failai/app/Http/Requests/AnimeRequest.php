@@ -27,8 +27,8 @@ class AnimeRequest extends FormRequest
             'description' => 'required',
             'rating' => 'nullable|numeric|between:0,5|regex:/^[0-9](\.[05])?$/',
             'release_date' => 'nullable|date',
-            'cover_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'thumbnail_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+//            'cover_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+//            'thumbnail_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'status_id' => 'required|exists:global_statuses,id',
         ];
     }

@@ -12,6 +12,7 @@
                    class="@error('email')is-invalid @enderror"><br>
             <input type="text" name="password" placeholder="Password" value="{{old('password')}}"
                    class="@error('password')is-invalid @enderror"><br>
+            <x-forms.select field="role" :model="$user" :options="\App\Models\User::ROLES"/>
             <hr>
             <input type="submit" class="waves-effect waves-light btn" value="Add new">
         </form>

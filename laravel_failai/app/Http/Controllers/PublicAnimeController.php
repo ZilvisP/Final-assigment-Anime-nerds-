@@ -10,8 +10,9 @@ class PublicAnimeController extends Controller
 
     public function index()
     {
-//        $animeList = $this->animeManager->getAllAnime();
         $animecollection = Anime::all();
+
+        $UserAnime = auth()->user()->anime;
 
         return view('public.anime.index', ['animecollection' => $animecollection]);
     }

@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 class AnimeController extends Controller
 {
-    protected $animeManager;
+    protected AnimeManager $animeManager;
 
     public function __construct(AnimeManager $animeManager)
     {
@@ -19,7 +19,6 @@ class AnimeController extends Controller
 
     public function index()
     {
-//        $animeList = $this->animeManager->getAllAnime();
         $animecollection = Anime::all();
 
         return view('dojo.anime.index', ['animecollection' => $animecollection]);
@@ -32,7 +31,7 @@ class AnimeController extends Controller
 
     public function store(AnimeRequest $request)
     {
-        $this->animeManager->createAnime($request->validated());
+        $this->animeManager->createAnime($request);
 
         return redirect()->route('anime.index')->with('success', 'Anime created successfully.');
     }
@@ -49,7 +48,7 @@ class AnimeController extends Controller
 
     public function update(AnimeRequest $request, Anime $anime)
     {
-        $this->animeManager->updateAnime($anime->id, $request->validated());
+        $this->animeManager->updateAnime($anime->id, $request);
 
         return redirect()->route('anime.index')->with('success', 'Anime updated successfully.');
     }

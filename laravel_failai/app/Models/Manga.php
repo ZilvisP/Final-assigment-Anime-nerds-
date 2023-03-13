@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 class Manga extends Model
 {
     use HasFactory;
+
     protected $table = 'manga';
     protected $fillable = [
         'title',
@@ -40,36 +41,14 @@ class Manga extends Model
             'manga_id',
             'id', 'id', 'genre_id');
     }
+
     public function getAverageRating(): float
     {
         return $this->userManga()->avg('rating');
     }
+
     public function __toString(): string
     {
         return $this->title;
     }
-
-//    public function setCoverImageAttribute($value)
-//    {
-//        $this->attributes['cover_image'] = $value;
-//        $this->generateImages($value);
-//    }
-//
-//    protected function generateImages($value)
-//    {
-//        $coverImagePath = public_path('img/cover/' . $value);
-//        $thumbnailImagePath = public_path('img/thumbnail/' . $value);
-//
-//        // generate cover image
-//        Image::make($coverImagePath)
-//            ->fit(500, 700)
-//            ->save($coverImagePath);
-//
-//        // generate thumbnail image
-//        Image::make($coverImagePath)
-//            ->fit(150, 200)
-//            ->save($thumbnailImagePath);
-//
-//        $this->thumbnail_image = 'thumbnail/' . $value;
-//    }
 }

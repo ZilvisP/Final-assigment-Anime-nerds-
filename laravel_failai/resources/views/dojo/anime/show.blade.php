@@ -12,7 +12,7 @@
                     <p>Title: {{$anime->title}}</p>
                     <p>Description: {{$anime->description}}</p>
                     <p>Release date: {{$anime->release_date}}</p>
-                    <p>Release date: {{$anime->status_id}}</p>
+                    <p>Status: {{$anime->status_id}}</p>
                 </div>
                 <div class="card-action">
                     <x-forms.buttons.action :model="$anime" mainRoute="anime"/>

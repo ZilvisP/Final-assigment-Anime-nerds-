@@ -21,8 +21,7 @@
     </div>
     <div class="content-container">
         <div class="logo-container">
-            <img src="{{ asset('assets/logo/grey.jpg') }}" width="200px" alt="logo">
-
+            @include('components.application-logo')
             <div class="main-content">
                 @yield('content', 'Default content')
             </div>

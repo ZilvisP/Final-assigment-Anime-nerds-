@@ -4,63 +4,74 @@ namespace App\Http\Managers;
 
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
 
 class FileManager
 {
-    /**
-     * Store an image in different sizes and delete the old image.
-     *
-     * @param UploadedFile $file
-     * @param string $path
-     * @param array $sizes
-     * @param string|null $oldFileName
-     * @return string
-     */
-    public function storeImage(UploadedFile $file, string $path, array $sizes, ?string $oldFileName = null): string
+    protected $disk;
+
+//    public function __construct()
+//    {
+//        $this->disk = Storage::disk('uploads');
+////        $this->disk->setRoot(public_path('uploads'));
+//    }
+
+    public function store($file, string $entityType, string $imageType)
     {
-        $fileName = $this->generateFileName($file);
 
-        foreach ($sizes as $name => $dimensions) {
-            $img = Image::make($file);
-            $img->fit($dimensions[0], $dimensions[1]);
-            $img->save(public_path($path . '/' . $name . '/' . $fileName));
-        }
-
-        if ($oldFileName) {
-            $this->deleteImage($path, $oldFileName, $sizes);
-        }
-
-        return $fileName;
-    }
-
-    /**
-     * Delete an image in different sizes.
-     *
-     * @param string $path
-     * @param string $fileName
-     * @param array $sizes
-     * @return void
-     */
-    public function deleteImage(string $path, string $fileName, array $sizes): void
-    {
-        foreach ($sizes as $name => $dimensions) {
-            Storage::delete($path . '/' . $name . '/' . $fileName);
-        }
-    }
-
-    /**
-     * Generate a unique file name for an uploaded file.
-     *
-     * @param UploadedFile $file
-     * @return string
-     */
-    private function generateFileName(UploadedFile $file): string
-    {
+        // Get the file extension
         $extension = $file->getClientOriginalExtension();
-        $name = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-        $fileName = $name . '_' . time() . '.' . $extension;
 
-        return $fileName;
+        // Generate a unique filename
+        $filename = uniqid('', true) . '.' . $extension;
+        $folder = '';
+        // Determine the folder to save the image in based on the entity type and image type
+        if ($entityType === 'anime') {
+            if ($imageType === 'cover') {
+                $folder = 'uploads/anime/covers';
+
+            } else if ($imageType === 'thumbnail') {
+                $folder = 'uploads/anime/thumbnails';
+            }
+        } else if ($entityType === 'manga') {
+            if ($imageType === 'cover') {
+                $folder = 'uploads/manga/covers';
+            } else if ($imageType === 'thumbnail') {
+                $folder = 'uploads/manga/thumbnails';
+            }
+        } else if ($entityType === 'user') {
+            $folder = 'uploads/avatars';
+        }
+
+
+
+
+        // Save the file to the appropriate folder
+        $file->move(public_path($folder), $filename);
+        //doesn't save
+        $path = public_path($folder) . '/' . $filename;
+
+
+
+//        $path = $file->storeAs($folder, $filename);
+//        $path = $file->move(public_path($folder), $filename);
+//        $path = $this->disk->putFileAs($folder, $file, $filename);
+
+        // Return the filename and path
+        return $path;
+
+//            [
+//            'filename' => $filename,
+//            'path' => $path
+//        ];
+    }
+
+    public function delete($path)
+    {
+        $this->disk->delete($path);
+    }
+
+    public function getPath($path)
+    {
+        return $this->disk->url($path);
     }
 }

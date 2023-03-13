@@ -8,12 +8,22 @@
         <thead>
         <tr>
             <th>ID</th>
-            <th>{{__('users.name')}}</th>
-            <th>{{__('users.email')}}</th>
-            <th>{{__('users.email_verified_at')}}</th>
-            <th>{{__('general.created_at')}}</th>
-            <th>{{__('general.updated_at')}}</th>
-            <th>{{__('general.actions')}}</th>
+            <th>{{__('Name')}}</th>
+            <th>{{__('Role')}}</th>
+            <th>{{__('Email')}}</th>
+            <th>{{__('Email verified at')}}</th>
+            <th>{{__('User created at')}}</th>
+            <th>{{__('user updated at')}}</th>
+            <th>{{__('Actions')}}</th>
+
+{{--            translation delayed--}}
+{{--            <th>ID</th>--}}
+{{--            <th>{{__('users.name')}}</th>--}}
+{{--            <th>{{__('users.email')}}</th>--}}
+{{--            <th>{{__('users.email_verified_at')}}</th>--}}
+{{--            <th>{{__('general.created_at')}}</th>--}}
+{{--            <th>{{__('general.updated_at')}}</th>--}}
+{{--            <th>{{__('general.actions')}}</th>--}}
         </tr>
         </thead>
         <tbody>

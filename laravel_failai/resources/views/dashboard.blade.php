@@ -20,7 +20,13 @@
     <div class="main-content">
         @yield('content')
     </div>
+{{--    <div class="sidebar-right">--}}
+{{--        @include('public.sidebar_right')--}}
+{{--    </div>--}}
+    <div class="logo">
+        @include('components.application-sidelogo')
+    </div>
 </main>
-        @include('layouts.footer')
+    @include('layouts.footer')
 </body>
 </html>
