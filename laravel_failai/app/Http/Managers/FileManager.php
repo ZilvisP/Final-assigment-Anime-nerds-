@@ -57,7 +57,9 @@ class FileManager
     public function delete(array $paths)
     {
         foreach($paths as $path) {
-            Storage::delete($path);
+            if ($path !== null) {
+                Storage::delete($path);
+            }
         }
     }
 }

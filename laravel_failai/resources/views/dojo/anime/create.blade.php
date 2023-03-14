@@ -11,18 +11,24 @@
              <textarea type="text" name="description" placeholder="Description"
                    class="@error('description')is-invalid @enderror">{{old('description')}}</textarea><br>
         </div>
-
         <div class="form-group">
+            <input type="text" name="episodes" placeholder="Episodes released" value="{{old('episodes')}}"
+                   class="@error('episodes')is-invalid @enderror"><br>
+        </div>
+        <div class="form-group">
+            <label for="release_date">Release date:</label>
             <input type="date" name="release_date" placeholder="Release date" value="{{old('release_date')}}"
                    class="@error('release_date')is-invalid @enderror"><br>
+        </div>
+        <div class="form-group">
+            <label for="finish_date">Finish date:</label>
+            <input type="date" name="finish_date" placeholder="Finish date" value="{{old('finish_date')}}"
+                   class="@error('finish_date')is-invalid @enderror"><br>
         </div>
 
         <div class="form-group">
             <input type="file" name="file" class="form-control-file" id="image">
         </div>
-
-{{--        accept="image/*"--}}
-
         <div class="form-group">
             <input type="text" name="status_id" placeholder="Status id" value="{{old('status_id')}}"
                    class="@error('status_id')is-invalid @enderror"><br>

@@ -27,7 +27,7 @@
                     <td>{{$manga->thumbnail_image}}</td>
                     <td>{{$manga->status_id}}</td>
                     <td>
-                        <x-forms.buttons.action :model="$manga" mainRoute="anime"/>
+                        <x-forms.buttons.action :model="$manga" mainRoute="manga"/>
                     </td>
                 </tr>
             @endforeach

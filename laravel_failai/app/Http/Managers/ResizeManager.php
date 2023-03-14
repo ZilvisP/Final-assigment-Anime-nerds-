@@ -12,8 +12,8 @@ class ResizeManager
         // Determine the dimensions for the image based on the image type and entity type
         if ($entityType === 'anime' || $entityType === 'manga') {
             if ($imageType === 'cover') {
-                $width = 600;
-                $height = 400;
+                $width = 400;
+                $height = 500;
             } else if ($imageType === 'thumbnail') {
                 $width = 400;
                 $height = 300;
