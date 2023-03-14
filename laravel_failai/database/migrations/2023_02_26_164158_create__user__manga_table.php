@@ -15,7 +15,6 @@ class CreateUserMangaTable extends Migration
             $table->unsignedDecimal('rating', 2, 1)->nullable();
             $table->date('date_rated')->nullable();
             $table->timestamps();
-
             $table->unique(['user_id', 'manga_id']);
         });
     }

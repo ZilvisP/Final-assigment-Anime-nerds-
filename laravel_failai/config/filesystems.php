@@ -36,18 +36,12 @@ return [
             'throw' => false,
         ],
 
-        'public_html' => [
+        'public' => [
             'driver' => 'local',
-            'root' => storage_path('app/public_html'),
+            'root' => storage_path('app/public'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
             'throw' => false,
-        ],
-        'uploads' => [
-            'driver' => 'local',
-            'root' => public_path('uploads'),
-            'url' => env('APP_URL').'/uploads',
-            'visibility' => 'public',
         ],
 
         's3' => [
@@ -76,7 +70,7 @@ return [
     */
 
     'links' => [
-        public_path('storage') => storage_path('app/public_html'),
+        public_path('storage') => storage_path('app/public'),
     ],
 
 ];

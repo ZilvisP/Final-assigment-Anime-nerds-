@@ -18,11 +18,13 @@ class Manga extends Model
     protected $fillable = [
         'title',
         'description',
-        'rating',
         'release_date',
+        'volumes',
+        'chapters',
+        'finish_date',
+        'status_id',
         'cover_image',
         'thumbnail_image',
-        'status_id',
     ];
 
     public function userManga()

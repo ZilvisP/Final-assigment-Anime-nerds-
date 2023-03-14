@@ -7,71 +7,57 @@ use Illuminate\Support\Facades\Storage;
 
 class FileManager
 {
-    protected $disk;
-
-//    public function __construct()
-//    {
-//        $this->disk = Storage::disk('uploads');
-////        $this->disk->setRoot(public_path('uploads'));
-//    }
-
-    public function store($file, string $entityType, string $imageType)
+    public function store($file, string $entityType): array
     {
-
         // Get the file extension
         $extension = $file->getClientOriginalExtension();
 
         // Generate a unique filename
         $filename = uniqid('', true) . '.' . $extension;
-        $folder = '';
-        // Determine the folder to save the image in based on the entity type and image type
-        if ($entityType === 'anime') {
-            if ($imageType === 'cover') {
-                $folder = 'uploads/anime/covers';
 
-            } else if ($imageType === 'thumbnail') {
-                $folder = 'uploads/anime/thumbnails';
-            }
+        // Save the original file to the appropriate folder
+        $originalFolder = "uploads/$entityType/originals";
+        $file->move(public_path($originalFolder), $filename);
+        $originalPath = public_path("$originalFolder/$filename");
+
+        // Determine the folder to save the cover, thumbnail, and avatar images in
+        $folder = '';
+        if ($entityType === 'anime') {
+            $folder = 'uploads/anime';
+
         } else if ($entityType === 'manga') {
-            if ($imageType === 'cover') {
-                $folder = 'uploads/manga/covers';
-            } else if ($imageType === 'thumbnail') {
-                $folder = 'uploads/manga/thumbnails';
-            }
+            $folder = 'uploads/manga';
         } else if ($entityType === 'user') {
             $folder = 'uploads/avatars';
         }
 
+        // Create the cover and thumbnail versions of the image
+        $coverPath = '';
+        $thumbnailPath = '';
+        $avatarPath = '';
+        if ($entityType === 'anime' || $entityType === 'manga') {
+            $coverPath = public_path("$folder/covers/$filename");
+            copy($originalPath, $coverPath);
+            $thumbnailPath = public_path("$folder/thumbnails/$filename");
+            copy($originalPath, $thumbnailPath);
 
+        } elseif ($entityType === 'user') {
+            $avatarPath = public_path("$folder/avatars/$filename");
+            copy($originalPath, $avatarPath);
+        }
 
-
-        // Save the file to the appropriate folder
-        $file->move(public_path($folder), $filename);
-        //doesn't save
-        $path = public_path($folder) . '/' . $filename;
-
-
-
-//        $path = $file->storeAs($folder, $filename);
-//        $path = $file->move(public_path($folder), $filename);
-//        $path = $this->disk->putFileAs($folder, $file, $filename);
-
-        // Return the filename and path
-        return $path;
-
-//            [
-//            'filename' => $filename,
-//            'path' => $path
-//        ];
+        // Return an array with the paths to the cover, thumbnail, and avatar versions of the image
+        return [
+            'cover' => $coverPath,
+            'thumbnail' => $thumbnailPath,
+            'avatar' => $avatarPath,
+        ];
     }
 
-    public function delete($path)
+    public function delete(array $paths)
     {
-        $this->disk->delete($path);
-    }
-
-    public function getPath($path)
-    {
-        return $this->disk->url($path);
+        foreach($paths as $path) {
+            Storage::delete($path);
+        }
     }
 }

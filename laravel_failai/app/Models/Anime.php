@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\HasOneThrough;
+use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 
 /**
@@ -22,13 +26,25 @@ class Anime extends Model
     protected $fillable = [
         'title',
         'description',
-        'rating',
         'release_date',
+        'finish_date',
+        'episodes',
+        'status_id',
         'cover_image',
         'thumbnail_image',
-        'status_id',
     ];
-    private mixed $title;
+
+    public function watchStates(): Builder
+    {
+        return UserStatus::query()->where(['category'=> 'Anime']);
+    }
+
+    public function userWatchState(): HasOneThrough
+    {
+        return $this->HasOneThrough(UserStatus::class, UserAnime::class,
+            'anime_id', 'id', 'id', 'status_id')->where(['user_anime.user_id'=>Auth::user()->id]);
+    }
+
 
     public function userAnime(): HasMany
     {

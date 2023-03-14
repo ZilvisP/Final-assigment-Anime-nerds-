@@ -47,3 +47,16 @@ footer .footer-content{
     bottom: 0;
     margin-bottom: 100px;
 }
+
+ /*.form-group input[name="description"] {*/
+ /*    height: 100px;*/
+ /*    !*width: 300px;*!*/
+ /*    !*box-sizing: border-box;*!*/
+ /*    display: block;*/
+ /*}*/
+
+.form-group textarea {
+    width: 370px;
+    height: 200px;
+    box-sizing: border-box;
+}

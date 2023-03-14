@@ -27,9 +27,13 @@ class MangaRequest extends FormRequest
             'description' => 'required|string',
             'rating' => 'nullable|numeric|between:0,10',
             'release_date' => 'nullable|date',
+            'volumes' => 'nullable|integer|min:1',
+            'chapters' => 'nullable|integer|min:1',
+            'finish_date' => 'nullable|date',
+            'status_id' => 'required|exists:global_statuses,id',
             'cover_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'thumbnail_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'status_id' => 'required|exists:global_statuses,id',
+
         ];
     }
 }

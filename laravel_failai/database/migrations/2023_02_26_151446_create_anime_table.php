@@ -12,8 +12,9 @@ class CreateAnimeTable extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
-            $table->float('rating', 2, 1)->nullable();
+            $table->integer('episodes')->nullable();
             $table->date('release_date')->nullable();
+            $table->date('finish_date')->nullable();
             $table->string('cover_image')->nullable();
             $table->string('thumbnail_image')->nullable();
             $table->foreignId('status_id');

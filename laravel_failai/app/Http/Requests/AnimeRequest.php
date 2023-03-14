@@ -25,11 +25,13 @@ class AnimeRequest extends FormRequest
         return [
             'title' => 'required|max:255',
             'description' => 'required',
-            'rating' => 'nullable|numeric|between:0,5|regex:/^[0-9](\.[05])?$/',
             'release_date' => 'nullable|date',
-//            'cover_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-//            'thumbnail_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'finish_date' => 'nullable|date',
+            'episodes' => 'nullable|integer|min:1',
             'status_id' => 'required|exists:global_statuses,id',
+            'cover_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'thumbnail_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+
         ];
     }
 }

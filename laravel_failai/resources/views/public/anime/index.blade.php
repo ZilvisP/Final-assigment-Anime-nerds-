@@ -16,23 +16,17 @@
                                 {{ $genre->name}}
                             @endforeach
                         </p>
+{{--                        Status:--}}
+                        <p>
+
+                            <x-forms.progressStatus
+                                :watchState="$anime->userWatchState"
+                                :options="$anime->watchStates()->get()"
 
 
-                        <x-forms.progressStatus field="status_id" :model="$UserAnime"
-                                                :options="\App\Models\UserStatus::all()" />
-
-
-
-
-
-                        {{--               TODO select status dropbox "watched want to watch etc.. TABLE user_anime   clmn status_id   <p></p>--}}
-                        {{--                    <x-forms.buttons.action :model="$manga" mainRoute="manga"/>--}}
-
-                        {{--               TODO next weak rate 5 stars     <p></p>--}}
-
-
-                        {{--               TODO after course episodes select     --}}
-                        {{--                    @include('components.forms.add-to-cart-form')--}}
+                                :animeId="$anime->id"
+                            />
+                        </p>
                     </div>
                 @endforeach
             </div>

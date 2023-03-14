@@ -89,28 +89,37 @@ class User extends Authenticatable implements MustVerifyEmail
             'user_id','id', 'id', 'anime_id');
     }
 
+    public function userAnime()
+    {
+        return $this->hasMany(UserAnime::class);
+    }
+    public function userManga()
+    {
+        return $this->hasMany(UserManga::class);
+    }
+
 
 //    public function anime(): HasMany
 //    {
 //        return $this->hasMany(UserAnime::class);
 //    }
 
-    public function anime(): hasManyThrough
-    {
-        return $this->hasManyThrough(Anime::class, UserAnime::class,
-            'user_id','id', 'id', 'anime_id');
-    }
+//    public function anime(): hasManyThrough
+//    {
+//        return $this->hasManyThrough(Anime::class, UserAnime::class,
+//            'user_id','id', 'id', 'anime_id');
+//    }
 
 
 //    public function manga(): HasMany
 //    {
 //        return $this->hasMany(UserManga::class);
 //    }
-    public function manga(): hasManyThrough
-    {
-        return $this->hasManyThrough(Manga::class, UserManga::class,
-            'user_id','id', 'id', 'manga_id');
-    }
+//    public function manga(): hasManyThrough
+//    {
+//        return $this->hasManyThrough(Manga::class, UserManga::class,
+//            'user_id','id', 'id', 'manga_id');
+//    }
 
 
     public function isAdmin(): bool

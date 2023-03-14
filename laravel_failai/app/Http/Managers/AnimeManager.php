@@ -14,7 +14,6 @@ class AnimeManager
 
     public function createAnime($request)
     {
-
         $anime = new Anime;
         $anime->title = $request->title;
         $anime->description = $request->description;
@@ -23,48 +22,40 @@ class AnimeManager
 
         if ($request->hasFile('file')) {
             $entityType = 'anime';
-            $imageType = 'cover';
-            $file = $request['file'];
+            $file = $request->file('file');
 
-//            $storagePath = 'uploads/' . $entityType . '/covers/';
-            $path = $this->fileManager->store($file, $entityType , $imageType);
+            $path = $this->fileManager->store($file, $entityType);
 
-
-            $resizedCoverPath = $this->resizeManager->resizeImage($path, $entityType, $imageType);
+            $resizedCoverPath = $this->resizeManager->resizeImage($path['cover'], $entityType, 'cover');
             $anime->cover_image = $resizedCoverPath;
 
-            $imageType = 'thumbnail';
-            $resizedThumbnailPath = $this->resizeManager->resizeImage($path, $entityType, $imageType);
+            $resizedThumbnailPath = $this->resizeManager->resizeImage($path['thumbnail'], $entityType, 'thumbnail');
             $anime->thumbnail_image = $resizedThumbnailPath;
         }
+
         $anime->save();
     }
 
     public function updateAnime($id, $request)
     {
-
-
         $anime = Anime::find($id);
-
         $anime->title = $request->title;
         $anime->description = $request->description;
         $anime->release_date = $request->release_date;
         $anime->status_id = $request->status_id;
 
-        if ($request->hasFile('image')) {
-            $imageType = 'cover';
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
             $entityType = 'anime';
-            $file = $request['file'];
 
-//            $storagePath = 'uploads/' . $entityType . '/covers/';
-            $path = $this->fileManager->store($file, $imageType, $entityType);
-            $resizedCoverPath = $this->resizeManager->resizeImage($path, $entityType, $imageType);
-            $this->fileManager->delete($anime->cover_image);
+            $path = $this->fileManager->store($file, $entityType);
+
+            $resizedCoverPath = $this->resizeManager->resizeImage($path['cover'], $entityType, 'cover');
+            $this->fileManager->delete([$anime->cover_image]);
             $anime->cover_image = $resizedCoverPath;
 
-            $imageType = 'thumbnail';
-            $resizedThumbnailPath = $this->resizeManager->resizeImage($path, $entityType, $imageType);
-            $this->fileManager->delete($anime->thumbnail_image);
+            $resizedThumbnailPath = $this->resizeManager->resizeImage($path['thumbnail'], $entityType, 'thumbnail');
+            $this->fileManager->delete([$anime->thumbnail_image]);
             $anime->thumbnail_image = $resizedThumbnailPath;
         }
 
@@ -74,8 +65,7 @@ class AnimeManager
     public function deleteAnime($id)
     {
         $anime = Anime::find($id);
-        $this->fileManager->delete($anime->cover_image);
-        $this->fileManager->delete($anime->thumbnail_image);
+        $this->fileManager->delete([$anime->cover_image, $anime->thumbnail_image]);
         $anime->delete();
     }
 }

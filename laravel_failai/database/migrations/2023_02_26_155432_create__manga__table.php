@@ -12,8 +12,10 @@ class CreateMangaTable extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
-            $table->decimal('rating', 2, 1)->nullable();
+            $table->integer('volumes')->nullable();
+            $table->integer('chapters')->nullable();
             $table->date('release_date')->nullable();
+            $table->date('finish_date')->nullable();
             $table->string('cover_image')->nullable();
             $table->string('thumbnail_image')->nullable();
             $table->unsignedBigInteger('status_id');
