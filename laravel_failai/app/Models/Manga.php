@@ -27,6 +27,15 @@ class Manga extends Model
         'thumbnail_image',
     ];
 
+    public function users()
+    {
+        return $this->belongsToMany (User::class, 'user_anime')->withPivot('rating');
+    }
+
+
+
+
+
     public function userManga()
     {
         return $this->hasMany(UserManga::class);

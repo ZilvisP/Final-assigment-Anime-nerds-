@@ -19,7 +19,7 @@ class FromDojo
     public function handle(Request $request, Closure $next): Response|RedirectResponse
     {
         if (!auth()->user()?->fromDojo()) {
-            return redirect()->route('home')->with('error', __('messages.not_from_dojo'));
+            return redirect()->route('/')->with('error', __('messages.not_from_dojo'));
         }
 
         return $next($request);

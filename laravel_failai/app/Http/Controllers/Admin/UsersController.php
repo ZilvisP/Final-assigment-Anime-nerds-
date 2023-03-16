@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Managers\UserManager;
 use App\Http\Requests\UserRequest;
+use App\Http\Requests\UserStoreRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class UsersController extends Controller
@@ -18,16 +20,17 @@ class UsersController extends Controller
         return view('dojo.users.index', compact('users'));
     }
 
-    public function store(UserRequest $request)
+    public function store(UserStoreRequest $request)
     {
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->password = $request->password;
+        $user->email_verified_at = $request->email_verified_at;
+        $user->password = Hash::make($request->password);
         if (Auth::user()->role === User::ROLE_ADMIN) {
             $user->role = $request->role;
         }
-        $user = User::create($request->all());
+        $user->save();
         return redirect()->route('users.show', $user);
     }
 
@@ -48,13 +51,11 @@ class UsersController extends Controller
 
     public function update(UserRequest $request, User $user)
     {
-        $data = $request->all();
-        if ($request->password === null){
-            unset($data['password']);
-        }
-
+//        $data = $request->all();
         $user->name = $request->name;
         $user->email = $request->email;
+
+        $user->email_verified_at = $request->email_verified_at;
         if (Auth::user()->role === User::ROLE_ADMIN){
             $user->role = $request->role;
         }

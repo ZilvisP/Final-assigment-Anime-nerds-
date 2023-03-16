@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anime and Manga</title>
     <link rel="stylesheet" href="/css/home.css"/>
+    <link rel="stylesheet" href="/css/starrating.scss"/>
     <script src="/js/home.js" defer></script>
     <script
         src="https://code.jquery.com/jquery-3.6.3.min.js"
         integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
         crossorigin="anonymous"></script>
+
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>

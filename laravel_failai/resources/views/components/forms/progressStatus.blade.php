@@ -1,5 +1,6 @@
 
 <div>
+{{--    negali prasidet html skaiciumi--}}
     <select name="a{{$animeId}}" id="{{ 'field_'.$animeId }}">
 
 {{--        changing default shown--}}

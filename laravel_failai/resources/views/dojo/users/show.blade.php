@@ -4,9 +4,9 @@
     <div class="row">
         <div class="col s12 m3">
             <div class="card">
-                <div class="card-image">
-                    <img src="{{$user->avatar}}" alt="{{ $user->avatar }}"><br>
-                </div>
+{{--                <div class="card-image">--}}
+{{--                    <img src="{{$user->avatar}}" alt="{{ $user->avatar }}"><br>--}}
+{{--                </div>--}}
                 <div class="card-content">
                     <div>ID: {{$user->id}}</div>
                     <p>User name: {{$user->name}}</p>

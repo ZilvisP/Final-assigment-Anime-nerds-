@@ -6,11 +6,13 @@ use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+
 /**
  * @property int $id
  * @property string $name
@@ -26,15 +28,17 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    public const ROLE_ADMIN = 'sensei';
-    public const ROLE_MANAGER = 'senpai';
     public const ROLE_USER = 'kohai';
+    public const ROLE_MANAGER = 'senpai';
+    public const ROLE_ADMIN = 'sensei';
+
+
 
 
     public const ROLES = [
-        self::ROLE_ADMIN,
         self::ROLE_USER,
         self::ROLE_MANAGER,
+        self::ROLE_ADMIN,
     ];
 
 
@@ -48,6 +52,7 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $fillable = [
         'name',
         'email',
+        'email_verified_at',
         'password',
 
     ];
@@ -57,7 +62,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'created_at',
         'updated_at',
         'status_id',
-          'avatar_image',
+        'avatar_image',
     ];
 
     /**
@@ -86,13 +91,24 @@ class User extends Authenticatable implements MustVerifyEmail
     public function status(): hasManyThrough
     {
         return $this->hasManyThrough(UserStatus::class, UserAnime::class,
-            'user_id','id', 'id', 'anime_id');
+            'user_id', 'id', 'id', 'anime_id');
     }
+
+    public function animeRated(): belongsToMany
+    {
+    return $this->belongsToMany(Anime::class);
+    }
+    public function mangaRated(): belongsToMany
+    {
+        return $this->belongsToMany(Manga::class);
+    }
+
 
     public function userAnime()
     {
         return $this->hasMany(UserAnime::class);
     }
+
     public function userManga()
     {
         return $this->hasMany(UserManga::class);
@@ -136,6 +152,7 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return in_array($this->role, [self::ROLE_ADMIN, self::ROLE_MANAGER]);
     }
+
     public function __toString(): string
     {
         return $this->name;

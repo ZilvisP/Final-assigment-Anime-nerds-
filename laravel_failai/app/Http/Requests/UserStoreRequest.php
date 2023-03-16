@@ -3,16 +3,22 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class UserRequest extends FormRequest
+/**
+ * Class UserUpdateRequest
+ * @package App\Http\Requests
+ * @property string $name
+ * @property string $email
+ * @property string $password
+ * @property string $password_confirmation
+ * @property string $role
+ */
+class UserStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
-     *
-     * @return bool
      */
-    public function authorize():bool
+    public function authorize(): bool
     {
         return true;
     }
@@ -22,17 +28,11 @@ class UserRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'name'     => ['required', 'string', 'min:3', 'max:255'],
-            'email' => [
-                'required',
-                'string',
-                'email',
-                'max:255',
-                Rule::unique('users')->ignore(optional($this->user)->id),
-            ],
+            'email'    => ['required', 'string', 'max:255', 'email',],
             'password' => ['nullable', 'string', 'min:8', 'confirmed'],
         ];
     }
