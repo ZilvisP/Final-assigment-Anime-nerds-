@@ -31,7 +31,7 @@ class AnimeController extends Controller
 
     public function store(AnimeRequest $request)
     {
-        $this->animeManager->createAnime($request);
+        $this->animeManager->create($request);
 
         return redirect()->route('anime.index')->with('success', 'Anime created successfully.');
     }
@@ -48,14 +48,14 @@ class AnimeController extends Controller
 
     public function update(AnimeRequest $request, Anime $anime)
     {
-        $this->animeManager->updateAnime($anime->id, $request);
+        $this->animeManager->update($anime->id, $request);
 
         return redirect()->route('anime.index')->with('success', 'Anime updated successfully.');
     }
 
     public function destroy(Anime $anime)
     {
-        $this->animeManager->deleteAnime($anime->id);
+        $this->animeManager->delete($anime->id);
 
         return redirect()->route('anime.index')->with('success', 'Anime deleted successfully.');
     }

@@ -10,6 +10,14 @@ use Illuminate\Http\Request;
 
 class MangaController extends Controller
 {
+
+    protected MangaManager $mangaManager;
+
+    public function __construct(MangaManager $mangaManager)
+    {
+        $this->mangaManager = $mangaManager;
+    }
+
     public function index()
     {
         $mangacollection = Manga::all();
@@ -23,9 +31,9 @@ class MangaController extends Controller
 
     public function store(MangaRequest $request)
     {
-        $manga = (new MangaManager)->create($request);
+        $this->mangaManager->create($request);
 
-        return redirect()->route('manga.show', $manga);
+        return redirect()->route('manga.index')->with('success', 'Manga created successfully.');
     }
 
     public function show(Manga $manga)
@@ -40,15 +48,15 @@ class MangaController extends Controller
 
     public function update(MangaRequest $request, Manga $manga)
     {
-        $manga = (new MangaManager)->update($request, $manga);
+        $this->mangaManager->update($manga->id, $request);
 
-        return redirect()->route('manga.show', $manga);
+        return redirect()->route('manga.index')->with('success', 'Manga updated successfully.');
     }
 
     public function destroy(Manga $manga)
     {
-        MangaManager::delete($manga);
+        $this->mangaManager->delete($manga->id);
 
-        return redirect()->route('manga.index');
+        return redirect()->route('manga.index')->with('success', 'Manga deleted successfully.');
     }
 }
