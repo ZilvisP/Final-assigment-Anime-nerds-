@@ -33,13 +33,15 @@
                     @endif
                 </div>
                 @if(auth()->check())
-                <p>
-                    <x-forms.progressStatus
-                        :watchState="$manga->userWatchState"
-                        :options="$manga->watchStates()->get()"
-                        :animeId="$manga->id"
-                    />
-                </p>
+                    <p>
+                        <x-forms.progressStatus
+                            {{--relation call from model as watchstate--}}
+                            :userProgressState="$manga->userReadState"
+                            :options="$manga->userReadStates()->get()"
+                            :mediaId="$manga->id"
+                            mediaType="manga"
+                        />
+                    </p>
                 @endif
                 <div class="admin-buttons-show">
                     <x-forms.buttons.action :model="$manga" mainRoute="manga"/>
