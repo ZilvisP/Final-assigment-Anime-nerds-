@@ -33,7 +33,7 @@ class UserMangaRequest extends FormRequest
                     $query->where('category', 'manga');
                 })
             ],
-            'rating' => 'nullable|numeric|between:0,10|regex:/^[0-9](\.[05])?$/',
+            'rating' => 'nullable|integer|min:1|max:5',
             'date_rated' => [
                 'nullable',
                 'date',

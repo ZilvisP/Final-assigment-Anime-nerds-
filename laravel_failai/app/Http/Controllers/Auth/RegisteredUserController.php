@@ -9,6 +9,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
@@ -32,8 +33,10 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')],
+//            'unique:'.User::class neveikia
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+//            Rules\Password::defaults() neveikia  ir dadedu 'string', 'min:8',
         ]);
 
         $user = User::create([
@@ -46,7 +49,7 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-//        return redirect(RouteServiceProvider::HOME);
+//        return redirect(RouteServiceProvider::HOME); panaikinta
         return redirect()->route('verification.notice');
     }
 }

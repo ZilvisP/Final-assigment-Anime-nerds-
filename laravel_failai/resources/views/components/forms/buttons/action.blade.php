@@ -1,4 +1,5 @@
 <div class="card-action">
+    @if(auth()->check() && Auth::user()->fromDojo())
     <a href="{{ route($mainRoute.'.edit', $model->id) }}"
        data-tooltip="Edit"
        class="tooltipped waves-effect waves-light green btn-small">
@@ -16,5 +17,6 @@
                 class="tooltipped waves-effect waves-light red btn-small">
             <i class="tiny material-icons">delete</i>
         </button>
+        @endif
     </form>
 </div>

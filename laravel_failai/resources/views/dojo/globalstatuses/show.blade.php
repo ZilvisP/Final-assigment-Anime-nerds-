@@ -5,8 +5,8 @@
             <div class="card">
                 <div class="card-content">
                     <div>ID: {{$globalstatus->id}}</div>
-                    <p>City: {{$globalstatus->name}}</p>
-                    <p>Street: {{$globalstatus->category}}</p>
+                    <p>Name: {{$globalstatus->name}}</p>
+                    <p>Category: {{$globalstatus->category}}</p>
                 </div>
                 <div class="card-action">
                     <x-forms.buttons.action :model="$globalstatus" mainRoute="globalstatuses"/>

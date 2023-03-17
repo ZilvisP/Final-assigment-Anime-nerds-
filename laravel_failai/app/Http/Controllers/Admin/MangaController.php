@@ -21,6 +21,7 @@ class MangaController extends Controller
     public function index()
     {
         $mangacollection = Manga::all();
+
         return view('dojo.manga.index', ['mangacollection' => $mangacollection]);
     }
 
@@ -28,12 +29,12 @@ class MangaController extends Controller
     {
         return view('dojo.manga.create');
     }
-
+//modifikuoju kad is managerio grazintu ne void o media ir galeciau show
     public function store(MangaRequest $request)
     {
-        $this->mangaManager->create($request);
+        $manga =  $this->mangaManager->create($request);
 
-        return redirect()->route('manga.index')->with('success', 'Manga created successfully.');
+        return redirect()->route('manga.show', ['manga' => $manga->id])->with('success', 'Manga created successfully.');
     }
 
     public function show(Manga $manga)
@@ -50,7 +51,7 @@ class MangaController extends Controller
     {
         $this->mangaManager->update($manga->id, $request);
 
-        return redirect()->route('manga.index')->with('success', 'Manga updated successfully.');
+        return redirect()->route('manga.show', ['manga' => $manga->id] )->with('success', 'Manga updated successfully.');
     }
 
     public function destroy(Manga $manga)

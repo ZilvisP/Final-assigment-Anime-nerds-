@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Manga;
 use App\Models\UserManga;
 use Illuminate\Http\Request;
@@ -12,21 +11,41 @@ class PublicMangaController extends Controller
     public function index()
     {
         $mangacollection = Manga::all();
+
         return view('public.manga.index', ['mangacollection' => $mangacollection]);
     }
 
 
     public function updateStatus(Request $request, Manga $manga)
     {
-        $userManga = UserManga::where('user_id', Auth::id())->where('manga_id', $manga->id)->first();
+        $userManga = $manga->userManga()->where('user_id', Auth::id())->first();
+
+        if (!$userManga) {
+            $userManga = new UserManga();
+            $userManga->manga_id = $manga->id;
+            $userManga->user_id = Auth::id();
+        }
+
         $userManga->status_id = $request->input('status_id');
         $userManga->save();
-
-        return response()->json(['message' => 'Status updated successfully.']);
     }
 
+    public function rateManga(Request $request, Manga $manga)
+    {
+        $userManga = $manga->userManga()->where('user_id', Auth::id())->where('manga_id', $manga->id)->first();
+
+        if (!$userManga) {
+            $userManga = new UserManga();
+            $userManga->manga_id = $manga->id;
+            $userManga->user_id = Auth::id();
+        }
+
+
+        $userManga->rating = $request->input('rating');
+        $userManga->save();
+    }
     public function show(Manga $manga)
     {
-        return view('public.manga.show', ['manga' => $manga]);
+        return view('dojo.manga.show', compact('manga'));
     }
 }

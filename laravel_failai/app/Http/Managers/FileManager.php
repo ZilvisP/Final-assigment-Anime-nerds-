@@ -38,19 +38,21 @@ class FileManager
         if ($entityType === 'anime' || $entityType === 'manga') {
             $coverPath = public_path("$folder/covers/$filename");
             copy($originalPath, $coverPath);
+
             $thumbnailPath = public_path("$folder/thumbnails/$filename");
             copy($originalPath, $thumbnailPath);
 
         } elseif ($entityType === 'user') {
+
             $avatarPath = public_path("$folder/avatars/$filename");
             copy($originalPath, $avatarPath);
         }
 
         // Return an array with the paths to the cover, thumbnail, and avatar versions of the image
         return [
-            'cover' => $coverPath,
-            'thumbnail' => $thumbnailPath,
-            'avatar' => $avatarPath,
+            'cover' => "/$folder/covers/$filename",
+            'thumbnail' => "/$folder/thumbnails/$filename",
+            'avatar' => "/$folder/avatars/$filename",
         ];
     }
 

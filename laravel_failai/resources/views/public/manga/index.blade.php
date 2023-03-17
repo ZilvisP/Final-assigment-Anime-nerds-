@@ -2,31 +2,46 @@
 @section('content')
 
     <div class="container">
-        <div class="anime selection">
+        <div class="selection">
             <div class="grid-container">
+
                 @foreach($mangacollection as $manga)
                     <div class="grid-item">
                         <div class="manga-thumbnail">
-                            {{--                        <img src="{{$anime->thumbnail_image}}" alt="{{$product->title}}">--}}
+                            {{--thumbnails leads to show anime route--}}
+                            <a href="{{ route('PublicManga.show', $manga) }}">
+                                <img src="{{$manga->thumbnail_image}}" alt="{{$manga->title}}">
+                            </a>
                         </div>
                         <p>{{$manga->title}}</p>
                         <p>Genres:
-                            @foreach($manga->genres as $genre)
+                            @foreach($manga->genres as $index => $genre)
                                 {{$genre->name}}
-                                @if (!$loop->last)
-                                    {{' '}}
+                                @if($index != count($manga->genres) - 1)
+                                    |
                                 @endif
                             @endforeach
                         </p>
-
-                        {{--               TODO select status dropbox "watched want to watch etc.. TABLE user_anime   clmn status_id   <p></p>--}}
-                        {{--                    <x-forms.buttons.action :model="$manga" mainRoute="manga"/>--}}
-
-                        {{--               TODO next weak rate 5 stars     <p></p>--}}
-
-
-                        {{--               TODO after course episodes select     --}}
-                        {{--                    @include('components.forms.add-to-cart-form')--}}
+                        {{--so normal mortals can visit site without errors no id--}}
+                        @if(Auth::check())
+                            <p>
+                                <!-- Use the x-star-rating component here, passing in the anime object and media type for reuse purpose-->
+                                <x-forms.star-rating :mediaId="$manga->id"
+                                                     mediaType="manga"
+                                                     {{--grazina reitinga userio per modelio relation, jeigul turi, jei ne null--}}
+                                                     :rating="$manga->userRating ? $manga->userRating->rating : null"
+                                />
+                            </p>
+                            <p>
+                                <x-forms.progressStatus
+                                    {{--relation call from model as watchstate--}}
+                                    :userProgressState="$manga->userReadState"
+                                    :options="$manga->userReadStates()->get()"
+                                    :mediaId="$manga->id"
+                                    mediaType="manga"
+                                />
+                            </p>
+                        @endif
                     </div>
                 @endforeach
             </div>
@@ -34,6 +49,3 @@
     </div>
 
 @endsection
-{{--                    @foreach($anime->genres as $genre)--}}
-{{--                        {{$genre->name}},--}}
-{{--                    @endforeach--}}

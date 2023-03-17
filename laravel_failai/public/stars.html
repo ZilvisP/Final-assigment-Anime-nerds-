@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Star Ratings Test</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-jeykr0lGx/kfW8pw2QjzsB0bpJVzC61A8s1sIaBYsRKeRQ2xgAgj6UdG6O9OmmrM3qT21IozsKsApuom6cZJrg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .stars i.fas {
+            color: gold;
+        }
+    </style>
+    <link rel="stylesheet" href="assets/fontawesome-free-6.3.0-web/css/all.css">
+</head>
+<body>
+
+
+<div class="stars">
+    <i class="fa-solid fa-star" data-rating="1"></i>
+    <i class="fa-solid fa-star" data-rating="2"></i>
+    <i class="fa-solid fa-star" data-rating="3"></i>
+    <i class="fa-solid fa-star" data-rating="4"></i>
+    <i class="fa-solid fa-star" data-rating="5"></i>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+    $(document).ready(function () {
+        $('.stars i').click(function () {
+            $(this).addClass('fas').removeClass('far').prevAll().addClass('fas').removeClass('far');
+            $(this).nextAll().addClass('far').removeClass('fas');
+
+
+            let rating = $(this).data('rating');
+
+            console.log(rating);
+
+
+
+        });
+    });
+</script>
+<p>asdasd</p>
+</body>
+</html>

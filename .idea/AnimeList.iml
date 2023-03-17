@@ -11,6 +11,9 @@
       <excludeFolder url="file://$MODULE_DIR$/laravel_failai/vendor/symfony/yaml" />
       <excludeFolder url="file://$MODULE_DIR$/laravel_failai/vendor/intervention/image" />
       <excludeFolder url="file://$MODULE_DIR$/laravel_failai/vendor/guzzlehttp/uri-template" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/dataSources" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_failai/public/uploads/users" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_failai/vendor" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

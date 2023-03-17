@@ -5,17 +5,47 @@
             <div class="card">
                 <div class="card-image">
                     <img src="{{$anime->cover_image}}" alt="{{$anime->title}}"><br>
-                    <h2><span class="card-title" style="color: #c57f29">{{$anime->title}}</span></h2>
+                    <h2><span class="card-title" style="color: #2f2f2f">{{$anime->title}}</span></h2>
                 </div>
                 <div class="card-content">
-                    <div>ID: {{$anime->id}}</div>
-                    <p>Title: {{$anime->title}}</p>
-                    <p>Description: {{$anime->description}}</p>
-                    <p>Release date: {{$anime->release_date}}</p>
-                    <p>Status: {{$anime->status_id}}</p>
+                    @if(auth()->check() && Auth::user()->fromDojo())
+                        <div><span style="color: #2f2f2f; font-weight: bold;">ID:</span>{{$anime->id}}</div>
+                    @endif
+                    <p><span style="color: #2f2f2f; font-weight: bold;">Title:</span>{{$anime->title}}</p>
+                    <p><span style="color: #2f2f2f; font-weight: bold;">Description:</span>{{$anime->description}}</p>
+                    <p><span style="color: #2f2f2f; font-weight: bold;">Episodes:</span>{{$anime->episodes}}</p>
+                    <p><span style="color: #2f2f2f; font-weight: bold;">Release date:</span>{{$anime->release_date}}</p>
+                    <p><span style="color: #2f2f2f; font-weight: bold;">Finish date:</span>{{$anime->finish_date}}</p>
+                    <p><span style="color: #2f2f2f; font-weight: bold;">Status:</span>{{$anime->globalStatus->name}}</p>
+                        <p><span style="color: #2f2f2f; font-weight: bold;">Genres:</span>
+                            @foreach($anime->genres as $index => $genre)
+                                {{$genre->name}}
+                                @if($index != count($anime->genres) - 1)
+                                    |
+                                @endif
+                            @endforeach</p>
+                        @if(auth()->check() && Auth::user()->fromDojo())
+                            <p><span style="color: #2f2f2f; font-weight: bold;">Cover image path:</span>{{$anime->cover_image}}</p>
+                            <p><span style="color: #2f2f2f; font-weight: bold;">Thumbnail image path:</span>{{$anime->thumbnail_image}}</p>
+
+                            <p><span style="color: #2f2f2f; font-weight: bold;">Added at:</span>{{$anime->created_at}}</p>
+                        <p><span style="color: #2f2f2f; font-weight: bold;">Updated at:</span>{{$anime->updated_at}}</p>
+                    @endif
                 </div>
-                <div class="card-action">
+                @if(auth()->check())
+                <p>
+                    <x-forms.progressStatus
+                        :watchState="$anime->userWatchState"
+                        :options="$anime->watchStates()->get()"
+                        :animeId="$anime->id"
+                    />
+                </p>
+                @endif
+                <div class="admin-buttons-show">
                     <x-forms.buttons.action :model="$anime" mainRoute="anime"/>
+                </div>
+                <div class="show-back">
+                <x-forms.buttons.previous />
                 </div>
             </div>
         </div>

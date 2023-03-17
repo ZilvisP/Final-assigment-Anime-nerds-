@@ -4,7 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasOneThrough;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Builder;
 
 //use Intervention\Image\Facades\Image;
 /**
@@ -27,21 +33,41 @@ class Manga extends Model
         'thumbnail_image',
     ];
 
-    public function users()
+    public function users(): HasManyThrough
     {
-        return $this->belongsToMany (User::class, 'user_anime')->withPivot('rating');
+        return $this->hasManyThrough(User::class, UserManga::class, 'manga_id', 'id', 'id', 'user_id')
+            ->where(['user_manga.user_id'=>Auth::user()->id]);
+    }
+
+//grazina man reitinga ciklui, kad galeciau atvaizduoti
+    public function userRating(): HasOne
+    {
+        return $this->hasOne(UserManga::class)
+            ->where('user_id', Auth::id())
+            ->select('rating');
     }
 
 
-
-
-
-    public function userManga()
+    public function userManga(): HasMany
     {
         return $this->hasMany(UserManga::class);
     }
+//taking all user states for manga from userStatus table displaying for user to select :options
+    public function userReadStates(): Builder
+    {
+        return UserStatus::query()->where(['category'=> 'Manga']);
+    }
 
-    public function globalStatus()
+//   through relation describing, in user_manga table there can be only one, lets us update or take current
+    public function userReadState(): HasOneThrough
+    {
+        return $this->HasOneThrough(UserStatus::class, UserManga::class,
+            'manga_id', 'id', 'id', 'status_id')->where(['user_manga.user_id'=>Auth::user()->id]);
+    }
+
+
+
+    public function globalStatus(): BelongsTo
     {
         return $this->belongsTo(GlobalStatus::class, 'status_id');
     }
@@ -53,10 +79,6 @@ class Manga extends Model
             'id', 'id', 'genre_id');
     }
 
-    public function getAverageRating(): float
-    {
-        return $this->userManga()->avg('rating');
-    }
 
     public function __toString(): string
     {

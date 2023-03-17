@@ -29,11 +29,12 @@ class AnimeController extends Controller
         return view('dojo.anime.create');
     }
 
+//modifikuoju kad is managerio grazintu ne void o media ir galeciau show
     public function store(AnimeRequest $request)
     {
-        $this->animeManager->create($request);
+        $anime = $this->animeManager->create($request);
 
-        return redirect()->route('anime.index')->with('success', 'Anime created successfully.');
+        return redirect()->route('anime.show', ['anime' => $anime->id])->with('success', 'Anime created successfully.');
     }
 
     public function show(Anime $anime)
@@ -50,7 +51,7 @@ class AnimeController extends Controller
     {
         $this->animeManager->update($anime->id, $request);
 
-        return redirect()->route('anime.index')->with('success', 'Anime updated successfully.');
+        return redirect()->route('anime.show', ['anime' => $anime->id])->with('success', 'Anime updated successfully.');
     }
 
     public function destroy(Anime $anime)

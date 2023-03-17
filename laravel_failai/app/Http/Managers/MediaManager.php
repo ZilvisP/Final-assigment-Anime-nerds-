@@ -35,6 +35,8 @@ class MediaManager
         $this->setMediaSpecificProperties($media, $request);
 
         $media->save();
+
+        return $media;
     }
 
     public function update($id, $request)

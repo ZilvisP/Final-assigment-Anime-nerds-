@@ -23,24 +23,18 @@ Route::get('/', HomeController::class);
 
 Route::get('/anime', [PublicAnimeController::class, 'index'])->name('PublicAnime.index');
 Route::get('/manga', [PublicMangaController::class, 'index'])->name('PublicManga.index');
-
-
-
-
-Route::put('/anime/{anime}/status', [PublicAnimeController::class, 'updateStatus'])->middleware('auth');
-
-
-
-
-
-//Route::put('/anime/{anime}/status', [PublicAnimeController::class, 'updateStatus'])->name('public.anime.status.update');
-//Route::put('/anime/{anime}/status', [PublicAnimeController::class, 'updateStatus'])->name('anime.status.update');
-//Route::put('/manga/{manga}/status', [PublicMangaController::class, 'updateStatus'])->name('manga.status.update');
-
-
-
 Route::get('/anime/{anime}', [PublicAnimeController::class, 'show'])->name('PublicAnime.show');
 Route::get('/manga/{manga}', [PublicMangaController::class, 'show'])->name('PublicManga.show');
+
+
+//rate anime/manga
+Route::put('/anime/{anime}/rating', [PublicAnimeController::class, 'rateAnime'])->middleware('auth');
+Route::put('/manga/{manga}/rating', [PublicMangaController::class, 'rateManga'])->middleware('auth');
+
+//watch/ read status anime/manga
+Route::put('/anime/{anime}/status', [PublicAnimeController::class, 'updateStatus'])->middleware('auth');
+Route::put('/manga/{manga}/status', [PublicMangaController::class, 'updateStatus'])->middleware('auth');
+
 
 
 Route::middleware(['auth', 'verified'])->group(function () {
