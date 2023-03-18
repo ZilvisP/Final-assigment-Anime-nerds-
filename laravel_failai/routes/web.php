@@ -26,7 +26,6 @@ Route::get('/manga', [PublicMangaController::class, 'index'])->name('PublicManga
 Route::get('/anime/{anime}', [PublicAnimeController::class, 'show'])->name('PublicAnime.show');
 Route::get('/manga/{manga}', [PublicMangaController::class, 'show'])->name('PublicManga.show');
 
-
 //rate anime/manga
 Route::put('/anime/{anime}/rating', [PublicAnimeController::class, 'rateAnime'])->middleware('auth');
 Route::put('/manga/{manga}/rating', [PublicMangaController::class, 'rateManga'])->middleware('auth');
@@ -34,6 +33,14 @@ Route::put('/manga/{manga}/rating', [PublicMangaController::class, 'rateManga'])
 //watch/ read status anime/manga
 Route::put('/anime/{anime}/status', [PublicAnimeController::class, 'updateStatus'])->middleware('auth');
 Route::put('/manga/{manga}/status', [PublicMangaController::class, 'updateStatus'])->middleware('auth');
+
+//show by status should have named state tables->change if find time, more sense
+Route::get('/anime/status/{status_id}', [PublicAnimeController::class, 'showByStatus'])->middleware('auth');
+//->name('PublicAnime.showByStatus')
+Route::get('/manga/status/{status_id}', [PublicMangaController::class, 'showByStatus'])->middleware('auth');
+//->name('PublicAnime.showByStatus');
+
+
 
 
 

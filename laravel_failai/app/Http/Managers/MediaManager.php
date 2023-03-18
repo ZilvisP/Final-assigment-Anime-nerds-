@@ -26,10 +26,10 @@ class MediaManager
             $path = $this->fileManager->store($file, $this->entityType);
 
             $resizedCoverPath = $this->resizeManager->resizeImage($path['cover'], $this->entityType, 'cover');
-            $media->cover_image = $resizedCoverPath;
+            $media->cover_image = "/$resizedCoverPath";
 
             $resizedThumbnailPath = $this->resizeManager->resizeImage($path['thumbnail'], $this->entityType, 'thumbnail');
-            $media->thumbnail_image = $resizedThumbnailPath;
+            $media->thumbnail_image = "/$resizedThumbnailPath";
         }
 
         $this->setMediaSpecificProperties($media, $request);

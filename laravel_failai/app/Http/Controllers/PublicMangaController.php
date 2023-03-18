@@ -29,7 +29,18 @@ class PublicMangaController extends Controller
         $userManga->status_id = $request->input('status_id');
         $userManga->save();
     }
-
+    public function showByStatus($status_id)
+    {
+        $mangacollection = Manga::whereHas('userManga', function($query) use ($status_id) {
+            $query->where('user_id', Auth::id())->where('status_id', $status_id);
+        })->get();
+        if ($mangacollection->isEmpty()) {
+            $mangacollection = Manga::all();
+        }
+        return view('public.manga.index', [
+            'mangacollection' => $mangacollection,
+        ]);
+    }
     public function rateManga(Request $request, Manga $manga)
     {
         $userManga = $manga->userManga()->where('user_id', Auth::id())->where('manga_id', $manga->id)->first();

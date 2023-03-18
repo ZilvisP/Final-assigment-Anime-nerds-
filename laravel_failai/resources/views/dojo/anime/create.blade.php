@@ -8,7 +8,7 @@
                    size="50" class="@error('title')is-invalid @enderror"><br>
         </div>
         <div class="form-group">
-             <textarea type="text" name="description" placeholder="Description"
+             <textarea  name="description" placeholder="Description"
                    class="@error('description')is-invalid @enderror">{{old('description')}}</textarea><br>
         </div>
         <div class="form-group">

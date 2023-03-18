@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col s12"></div>
         <h2>Users anime</h2>
-        <a href="{{route('useranime.create')}}" class="btn btn-primary">Add new</a>
+
         <table class="table">
             <thead>
             <tr>
@@ -26,6 +26,7 @@
                     <td>{{$useranime->date_voted}}</td>
                     <td>
                         <x-forms.buttons.action :model="$useranime" mainRoute="useranime"/>
+                        <a href="{{route('useranime.create')}}" class="a-button" >Add new</a>
                     </td>
                 </tr>
             @endforeach

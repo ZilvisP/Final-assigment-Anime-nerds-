@@ -34,6 +34,13 @@
                 </div>
                 @if(auth()->check())
                     <p>
+                        <!-- Use the rating component here, passing in the anime object and media type for reuse purpose-->
+                        <x-forms.star-rating :mediaId="$manga->id"
+                                             mediaType="manga"
+                                             :rating="$manga->userRating ? $manga->userRating->rating : null"
+                        />
+                    </p>
+                    <p>
                         <x-forms.progressStatus
                             {{--relation call from model as watchstate--}}
                             :userProgressState="$manga->userReadState"
@@ -48,7 +55,7 @@
                 </div>
 
                 <div class="show-back">
-                    <x-forms.buttons.previous />
+                    <a href="{{ URL::previous() }}" class="a-button">Back</a>
                 </div>
             </div>
         </div>

@@ -4,11 +4,10 @@
     <div class="container">
         <div class="selection">
             <div class="grid-container">
-
                 @foreach($mangacollection as $manga)
                     <div class="grid-item">
                         <div class="manga-thumbnail">
-                            {{--thumbnails leads to show anime route--}}
+{{--thumbnails leads to show anime route--}}
                             <a href="{{ route('PublicManga.show', $manga) }}">
                                 <img src="{{$manga->thumbnail_image}}" alt="{{$manga->title}}">
                             </a>
@@ -22,19 +21,19 @@
                                 @endif
                             @endforeach
                         </p>
-                        {{--so normal mortals can visit site without errors no id--}}
+{{--so normal mortals can visit site without errors no id--}}
                         @if(Auth::check())
                             <p>
-                                <!-- Use the x-star-rating component here, passing in the anime object and media type for reuse purpose-->
+<!-- Use the x-star-rating component here, passing in the anime object and media type for reuse purpose-->
                                 <x-forms.star-rating :mediaId="$manga->id"
                                                      mediaType="manga"
-                                                     {{--grazina reitinga userio per modelio relation, jeigul turi, jei ne null--}}
+{{--grazina reitinga userio per modelio relation, jeigul turi, jei ne null--}}
                                                      :rating="$manga->userRating ? $manga->userRating->rating : null"
                                 />
                             </p>
                             <p>
                                 <x-forms.progressStatus
-                                    {{--relation call from model as watchstate--}}
+{{--relation call from model as watchstate--}}
                                     :userProgressState="$manga->userReadState"
                                     :options="$manga->userReadStates()->get()"
                                     :mediaId="$manga->id"
@@ -45,7 +44,14 @@
                     </div>
                 @endforeach
             </div>
+            @if(Auth::check())
+            <div class="sidebar-right">
+                <x-forms.user_sidebar
+{{--relation call from model as watchstate--}}
+                    :options="$manga->userReadStates()->get()"
+                    mediaType="manga"
+                />
         </div>
+            @endif
     </div>
-
 @endsection

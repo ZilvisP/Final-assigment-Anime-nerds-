@@ -2,8 +2,8 @@
 @section('content')
     <div class="row">
         <div class="col s12"></div>
-        <h2>Addresses</h2>
-        <a href="{{route('usermanga.create')}}" class="btn btn-primary">Add new</a>
+        <h2>User Manga</h2>
+
         <table class="table">
             <thead>
             <tr>
@@ -26,6 +26,7 @@
                     <td>{{$usermanga->date_voted}}</td>
                     <td>
                         <x-forms.buttons.action :model="$usermanga" mainRoute="usermanga"/>
+                        <a href="{{route('usermanga.create')}}" class="a-button" >Add new</a>
                     </td>
                 </tr>
             @endforeach

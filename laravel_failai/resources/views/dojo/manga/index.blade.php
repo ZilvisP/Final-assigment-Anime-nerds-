@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col s12"></div>
         <h2>Manga</h2>
-        <a href="{{route('manga.create')}}" class="btn btn-primary">Add new</a>
+
         <table class="table">
             <thead>
             <tr>
@@ -14,6 +14,7 @@
                 <th>Cover image</th>
                 <th>Thumbnail image</th>
                 <th>Status</th>
+
             </tr>
             </thead>
             <tbody>
@@ -28,6 +29,7 @@
                     <td>{{$manga->status_id}}</td>
                     <td>
                         <x-forms.buttons.action :model="$manga" mainRoute="manga"/>
+                    <a href="{{route('manga.create')}}" class="a-button">Add new</a>
                     </td>
                 </tr>
             @endforeach

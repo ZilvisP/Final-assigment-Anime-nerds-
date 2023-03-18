@@ -1,20 +1,20 @@
-.sidebar {
+.sidebar-right {
     position: fixed;
     top: 200px;
-    left: 0;
+    right: 0;
     bottom: 0;
     overflow-y: auto;
     width: 250px;
 
 }
-.menu-list{
+.menu-right-list{
     list-style: none;
 }
-.menu-list a {
+.menu-right-list a {
     text-decoration: none;
     color: #c5bfbf;
 
 }
-.menu-list a:hover {
+.menu-right-list a:hover {
     background-color: #545454;
 }

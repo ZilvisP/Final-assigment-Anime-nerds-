@@ -50,15 +50,20 @@ class FileManager
 
         // Return an array with the paths to the cover, thumbnail, and avatar versions of the image
         return [
-            'cover' => "/$folder/covers/$filename",
-            'thumbnail' => "/$folder/thumbnails/$filename",
-            'avatar' => "/$folder/avatars/$filename",
+//            saugojimas veikia, bet pathas netinka
+//            'cover' => $coverPath,
+//            'thumbnail' => $thumbnailPath,
+//            'avatar' => $avatarPath,
+
+            'cover' => "$folder/covers/$filename",
+            'thumbnail' => "$folder/thumbnails/$filename",
+            'avatar' => "$folder/avatars/$filename",
         ];
     }
 
     public function delete(array $paths)
     {
-        foreach($paths as $path) {
+        foreach ($paths as $path) {
             if ($path !== null) {
                 Storage::delete($path);
             }

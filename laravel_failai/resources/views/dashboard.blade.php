@@ -10,11 +10,15 @@
         crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="/css/home.css"/>
-    <link rel="stylesheet" href="assets/fontawesome-free-6.3.0-web/css/all.css">
+    <link rel="stylesheet" href="/css/table.css"/>
+    <link rel="stylesheet" href="/assets/fontawesome-free-6.3.0-web/css/all.css">
     <script src="/js/home.js" defer></script>
     <script src="/js/stars.js" defer></script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
+<div class="logo">
+    @include('components.application-sidelogo')
+</div>
 <body>
     @include('layouts.header')
 <main>
@@ -24,13 +28,9 @@
     <div class="main-content">
         @yield('content')
     </div>
-{{--    <div class="sidebar-right">--}}
-{{--        @include('public.sidebar_right')--}}
-{{--    </div>--}}
-    <div class="logo">
-        @include('components.application-sidelogo')
-    </div>
 </main>
+    <footer>
     @include('layouts.footer')
+    </footer>
 </body>
 </html>

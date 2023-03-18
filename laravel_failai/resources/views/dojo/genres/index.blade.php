@@ -2,13 +2,14 @@
 @section('content')
     <div class="row">
         <div class="col s12"></div>
-        <h1>Genres</h1>
-        <a href="{{route('genres.create')}}" class="btn btn-primary">Add new</a>
+        <h2>Genres</h2>
+
         <table class="table">
             <thead>
             <tr>
                 <th>ID</th>
                 <th>Name</th>
+
             </tr>
             </thead>
             <tbody>
@@ -18,6 +19,7 @@
                     <td>{{$genre->name}}</td>
                     <td>
                         <x-forms.buttons.action :model="$genre" mainRoute="genres"/>
+                   <a href="{{route('genres.create')}}" class="a-button">Add new</a>
                     </td>
                 </tr>
             @endforeach

@@ -4,9 +4,6 @@
     <div class="container">
         <div class="selection">
             <div class="grid-container">
-
-{{--<a href="?genre=action">veiksmo</a>--}}
-
                 @foreach($animecollection as $anime)
                     <div class="grid-item">
                         <div class="anime-thumbnail">
@@ -24,18 +21,16 @@
                                 @endif
                             @endforeach
                         </p>
-                        {{--so normal humans can visit site without errors no id--}}
+{{--so normal humans can visit site without errors no id--}}
                         @if(Auth::check())
                             <p>
 <!-- Use the rating component here, passing in the anime object and media type for reuse purpose-->
-
                                 <x-forms.star-rating :mediaId="$anime->id"
-                                                     {{--                                                     :rating = "$anime->userRating()"--}}
                                                      mediaType="anime"
+{{--grazina reitinga userio per modelio relation, jeigul turi, jei ne null--}}
                                                      :rating="$anime->userRating ? $anime->userRating->rating : null"
                                 />
                             </p>
-
                             <p>
                                 <x-forms.progressStatus
 {{-- relation call from model as watchstate--}}
@@ -49,7 +44,15 @@
                     </div>
                 @endforeach
             </div>
+            @if(Auth::check())
+            <div class="sidebar-right">
+                <x-forms.user_sidebar
+{{--relation call from model as watchstate--}}
+                    :options="$anime->watchStates()->get()"
+                    mediaType="anime"
+                />
+            </div>
+            @endif
         </div>
     </div>
-
 @endsection

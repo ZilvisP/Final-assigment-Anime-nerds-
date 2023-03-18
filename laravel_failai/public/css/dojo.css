@@ -1,33 +1,33 @@
-aside.menu {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
+/*aside.menu {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    height: 100%;*/
+/*}*/
 
-.menu-list {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-}
+/*.menu-list {*/
+/*    margin-top: 1rem;*/
+/*    margin-bottom: 1rem;*/
+/*}*/
 
-.menu-list li {
-    padding: 0.5rem 1rem;
-}
+/*.menu-list li {*/
+/*    padding: 0.5rem 1rem;*/
+/*}*/
 
-.menu-list li a {
-    color: #333;
-}
+/*.menu-list li a {*/
+/*    color: #333;*/
+/*}*/
 
-.menu-list li a:hover {
-    color: #666;
-}
-aside.menu {
-    width: 200px; /* set the width of the sidebar */
-    background-color: #f0f0f0;
-    /* add any other styles you want */
-}
+/*.menu-list li a:hover {*/
+/*    color: #666;*/
+/*}*/
+/*aside.menu {*/
+/*    width: 200px; !* set the width of the sidebar *!*/
+/*    background-color: #f0f0f0;*/
 
-/* Styles for the main content area */
-.main-content {
-    margin-left: 200px; /* set the left margin to the width of the sidebar */
-    /* add any other styles you want */
-}
+/*}*/
+
+/*!* Styles for the main content area *!*/
+/*.main-content {*/
+/*    margin-left: 200px; !* set the left margin to the width of the sidebar *!*/
+
+/*}*/
