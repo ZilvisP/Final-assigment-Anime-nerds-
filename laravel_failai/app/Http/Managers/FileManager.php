@@ -32,9 +32,6 @@ class FileManager
         }
 
         // Create the cover and thumbnail versions of the image
-        $coverPath = '';
-        $thumbnailPath = '';
-        $avatarPath = '';
         if ($entityType === 'anime' || $entityType === 'manga') {
             $coverPath = public_path("$folder/covers/$filename");
             copy($originalPath, $coverPath);
@@ -50,11 +47,6 @@ class FileManager
 
         // Return an array with the paths to the cover, thumbnail, and avatar versions of the image
         return [
-//            saugojimas veikia, bet pathas netinka
-//            'cover' => $coverPath,
-//            'thumbnail' => $thumbnailPath,
-//            'avatar' => $avatarPath,
-
             'cover' => "$folder/covers/$filename",
             'thumbnail' => "$folder/thumbnails/$filename",
             'avatar' => "$folder/avatars/$filename",

@@ -19,7 +19,6 @@ class AnimeResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'description' => $this->description,
-            'rating' => $this->rating,
             'release_date' => $this->release_date,
             'cover_image' => $this->cover_image,
             'thumbnail_image' => $this->thumbnail_image,

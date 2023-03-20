@@ -1,5 +1,5 @@
 <div>
-
+{{--role selectinam--}}
     <select name="{{$field}}" id="{{'field_'.$field}}">
 {{--<option value="">Select role</option>--}}
         @foreach($options as $option)

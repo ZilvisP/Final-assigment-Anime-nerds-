@@ -8,13 +8,13 @@ $(document).ready(function () {
         for (let i = 0; i < anime.length; i++) {
             let animeData = anime[i];
             animeHtml += `
-                <div class="flex flex-col justify-between items-center">
-                    <div class="flex justify-center items-center">
-                        <img src="${animeData.cover_image}" alt="${animeData.title}" class="w-40 h-40">
+                <div>
+                    <div>
+                        <img src="${animeData.cover_image}" alt="${animeData.title}">
                     </div>
-                    <div class="flex flex-col justify-center items-center">
-                        <p class="font-medium text-base leading-4 text-gray-800 dark:text-white">${animeData.title}</p>
-                        <p class="font-normal text-sm leading-3 text-gray-600 dark:text-gray-300">${animeData.rating} / 10</p>
+                    <div>
+                        <p>${animeData.title}</p>
+                        <p>${animeData.rating} / 10</p>
                     </div>
                 </div>
             `;
@@ -33,13 +33,13 @@ $(document).ready(function () {
         for (let i = 0; i < anime.length; i++) {
             let animeData = anime[i];
             animeHtml += `
-                <div class="flex flex-col justify-between items-center">
-                    <div class="flex justify-center items-center">
-                        <img src="${animeData.cover_image}" alt="${animeData.title}" class="w-40 h-40">
+                <div>
+                    <div>
+                        <img src="${animeData.cover_image}" alt="${animeData.title}">
                     </div>
-                    <div class="flex flex-col justify-center items-center">
-                        <p class="font-medium text-base leading-4 text-gray-800 dark:text-white">${animeData.title}</p>
-                        <p class="font-normal text-sm leading-3 text-gray-600 dark:text-gray-300">${animeData.rating} / 10</p>
+                    <div>
+                        <p>${animeData.title}</p>
+                        <p>${animeData.rating} / 10</p>
                     </div>
                 </div>
             `;
@@ -58,13 +58,13 @@ $(document).ready(function () {
         for (let i = 0; i < manga.length; i++) {
             let mangaData = manga[i];
             mangaHtml += `
-                <div class="flex flex-col justify-between items-center">
-                    <div class="flex justify-center items-center">
-                        <img src="${mangaData.cover_image}" alt="${mangaData.title}" class="w-40 h-40">
+                <div>
+                    <div>
+                        <img src="${mangaData.cover_image}" alt="${mangaData.title}">
                     </div>
-                    <div class="flex flex-col justify-center items-center">
-                        <p class="font-medium text-base leading-4 text-gray-800 dark:text-white">${mangaData.title}</p>
-                        <p class="font-normal text-sm leading-3 text-gray-600 dark:text-gray-300">${mangaData.rating} / 10</p>
+                    <div>
+                        <p>${mangaData.title}</p>
+                        <p>${mangaData.rating} / 10</p>
                     </div>
                 </div>
             `;
@@ -83,13 +83,13 @@ $(document).ready(function () {
         for (let i = 0; i < manga.length; i++) {
             let mangaData = manga[i];
             mangaHtml += `
-            <div class="flex flex-col justify-between items-center">
-                <div class="flex justify-center items-center">
-                    <img src="${mangaData.cover_image}" alt="${mangaData.title}" class="w-40 h-40">
+            <div>
+                <div>
+                    <img src="${mangaData.cover_image}" alt="${mangaData.title}">
                 </div>
-                <div class="flex flex-col justify-center items-center">
-                    <p class="font-medium text-base leading-4 text-gray-800 dark:text-white">${mangaData.title}</p>
-                    <p class="font-normal text-sm leading-3 text-gray-600 dark:text-gray-300">${mangaData.rating} / 10</p>
+                <div>
+                    <p>${mangaData.title}</p>
+                    <p>${mangaData.rating} / 10</p>
                 </div>
             </div>
         `;

@@ -30,7 +30,7 @@ Route::get('/manga/{manga}', [PublicMangaController::class, 'show'])->name('Publ
 Route::put('/anime/{anime}/rating', [PublicAnimeController::class, 'rateAnime'])->middleware('auth');
 Route::put('/manga/{manga}/rating', [PublicMangaController::class, 'rateManga'])->middleware('auth');
 
-//watch/ read status anime/manga
+//watch/ read  anime/manga update status
 Route::put('/anime/{anime}/status', [PublicAnimeController::class, 'updateStatus'])->middleware('auth');
 Route::put('/manga/{manga}/status', [PublicMangaController::class, 'updateStatus'])->middleware('auth');
 

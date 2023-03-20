@@ -1,4 +1,3 @@
-{{--<div class="anime-rating">--}}
 
 <div class="stars" data-mediaid="{{$mediaId}}" data-mediatype="{{$mediaType}}">
 

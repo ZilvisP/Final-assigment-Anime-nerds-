@@ -34,13 +34,14 @@ h2 {
     max-width: 100%;
 }
 /*automatiskai pritaikys columns pagal screen, kad tilptu i mano inbox background*/
-@media screen and (min-width: 768px) {
-    .grid {
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    }
-}
+/*@media screen and (min-width: 768px) {*/
+/*    .grid {*/
+/*        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));*/
+/*    }*/
+/*}*/
 
 /*anime/manga puslapiam gridas*/
+/*kiek kolumu darytu automatiskai*/
 .grid-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -220,14 +221,3 @@ footer .footer-content{
 .inline-button span:hover {
     text-decoration: underline;
 }
-
-/*!*admino buttonus wrapinu show blade kad butu inline*!*/
-/*.admin-buttons-show {*/
-/*    display: flex;*/
-/*    flex-wrap: wrap;*/
-/*    justify-content: flex-end;*/
-/*}*/
-
-/*.admin-buttons-show form {*/
-/*    margin-left: 1rem;*/
-/*}*/

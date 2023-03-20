@@ -23,9 +23,9 @@ class AnimeMangaGenreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'anime_id' => 'required_without:manga_id|exists:anime,id',
-            'manga_id' => 'required_without:anime_id|exists:manga,id',
-            'genre_id' => 'required|exists:genres,id',
+            'anime_id' => 'integer|exists:anime,id',
+            'manga_id' => 'integer|exists:manga,id',
+            'genre_id' => 'required|integer|exists:genres,id',
         ];
     }
 }
